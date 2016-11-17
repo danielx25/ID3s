@@ -1,0 +1,8 @@
+C:\Users\danielx\Desktop\ID3\ID3\bin\Debug\ID3.exe.config
+C:\Users\danielx\Desktop\ID3\ID3\bin\Debug\ID3.exe
+C:\Users\danielx\Desktop\ID3\ID3\bin\Debug\ID3.pdb
+C:\Users\danielx\Desktop\ID3\ID3\obj\Debug\ID3.csprojResolveAssemblyReference.cache
+C:\Users\danielx\Desktop\ID3\ID3\obj\Debug\ID3.Properties.Resources.resources
+C:\Users\danielx\Desktop\ID3\ID3\obj\Debug\ID3.csproj.GenerateResource.Cache
+C:\Users\danielx\Desktop\ID3\ID3\obj\Debug\ID3.exe
+C:\Users\danielx\Desktop\ID3\ID3\obj\Debug\ID3.pdb
