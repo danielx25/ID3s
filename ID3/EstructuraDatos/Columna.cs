@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ID3.Tabla
+namespace ID3.EstructuraDatos
 {
     class Columna
     {

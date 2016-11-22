@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ID3.Tabla
+namespace ID3.EstructuraDatos
 {
-    class Tabla
+    public class Tabla
     {
         private int numFilas = 0;
         private int numColumna = 0;
