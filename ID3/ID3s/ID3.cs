@@ -28,7 +28,6 @@ namespace ID3.ID3s
                 //el mayor numero de valor de salida
                 return raiz;
             }
-
             String atributo = seleccionarAtributoConMayorGanancia(tabla, atributos_salida, atributos);
             return null;
         }

@@ -64,6 +64,57 @@ namespace ID3
             azucarsAngre[11] = "bajo";
             azucarsAngre[12] = "alto";
             azucarsAngre[13] = "alto";
+
+            Columna indiceColesterol = new Columna(14, false);
+            indiceColesterol[0] = "alto";
+            indiceColesterol[1] = "alto";
+            indiceColesterol[2] = "bajo";
+            indiceColesterol[3] = "alto";
+            indiceColesterol[4] = "alto";
+            indiceColesterol[5] = "alto";
+            indiceColesterol[6] = "alto";
+            indiceColesterol[7] = "bajo";
+            indiceColesterol[8] = "bajo";
+            indiceColesterol[9] = "alto";
+            indiceColesterol[10] = "bajo";
+            indiceColesterol[11] = "alto";
+            indiceColesterol[12] = "alto";
+            indiceColesterol[13] = "bajo";
+
+            Columna alergiaAntibiotico = new Columna(14, false);
+            alergiaAntibiotico[0] = "no";
+            alergiaAntibiotico[1] = "si";
+            alergiaAntibiotico[2] = "no";
+            alergiaAntibiotico[3] = "no";
+            alergiaAntibiotico[4] = "si";
+            alergiaAntibiotico[5] = "si";
+            alergiaAntibiotico[6] = "si";
+            alergiaAntibiotico[7] = "no";
+            alergiaAntibiotico[8] = "si";
+            alergiaAntibiotico[9] = "si";
+            alergiaAntibiotico[10] = "si";
+            alergiaAntibiotico[11] = "si";
+            alergiaAntibiotico[12] = "si";
+            alergiaAntibiotico[13] = "no";
+
+            Columna otrasAlergias = new Columna(14, false);
+            otrasAlergias[0] = "no";
+            otrasAlergias[1] = "no";
+            otrasAlergias[2] = "no";
+            otrasAlergias[3] = "si";
+            otrasAlergias[4] = "si";
+            otrasAlergias[5] = "si";
+            otrasAlergias[6] = "no";
+            otrasAlergias[7] = "si";
+            otrasAlergias[8] = "si";
+            otrasAlergias[9] = "si";
+            otrasAlergias[10] = "si";
+            otrasAlergias[11] = "si";
+            otrasAlergias[12] = "si";
+            otrasAlergias[13] = "no";
+
+
+
         }
     }
 }
