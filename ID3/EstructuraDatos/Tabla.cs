@@ -35,7 +35,7 @@ namespace ID3.EstructuraDatos
             }
         }
 
-        public void addColumna(Columna columna)
+        public void agregarColumna(Columna columna)
         {
             tabla.Add(columna);
         }

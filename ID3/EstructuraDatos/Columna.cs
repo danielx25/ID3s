@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ID3.EstructuraDatos
 {
-    class Columna
+    public class Columna
     {
         private int numFilas = 0;
         private List<string> atributos = null;
