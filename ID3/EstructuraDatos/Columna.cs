@@ -53,5 +53,10 @@ namespace ID3.EstructuraDatos
             return this.clase;
         }
 
+        public int getTam()
+        {
+            return lista.Count;
+        }
+
     }
 }

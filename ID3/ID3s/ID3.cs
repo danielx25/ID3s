@@ -34,6 +34,16 @@ namespace ID3.ID3s
 
         public bool siTodosEjemplosSonLosMismos(Tabla tabla)
         {
+            Columna columna = tabla.getColumnaAtributoSalida();
+            String atributo;
+            atributo = (String)columna[0];
+            for (int i=1; i<columna.getTam(); i++)
+            {
+                if (atributo == columna[i])
+                {
+
+                }
+            }
             return false;
         }
 

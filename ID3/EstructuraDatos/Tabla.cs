@@ -16,7 +16,8 @@ namespace ID3.EstructuraDatos
 
         public Tabla()
         {
-
+            clases = new List<string>();
+            tabla = new List<Columna>();
         }
 
 
@@ -41,9 +42,19 @@ namespace ID3.EstructuraDatos
             clases.Add(columna.getClase());
         }
 
-        public int getCountColumna()
+        public Columna getColumna(int indice)
         {
-            return tabla.Count; 
+            return tabla[indice];
+        }
+
+        public Columna getColumnaAtributoSalida()
+        {
+            return tabla[tabla.Count - 1];
+        }
+
+        public Columna getCountColumna()
+        {
+            return tabla[tabla.Count-1]; 
         }
     }
 }

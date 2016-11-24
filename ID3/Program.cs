@@ -19,14 +19,16 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            System.Console.WriteLine("#########-------ID3-------########");
-            
-            Columna columna = new Columna(5, true);
-            for(int i=0; i<5; i++)
-            {
-                //System.Console.WriteLine(columna[i]);
-                columna[i] = i + 1;
-            }
+            string root = @"C:\users";
+            string root2 = @"C:\Users";
+
+            // Use the overload of the Equals method that specifies a StringComparison.
+            // Ordinal is the fastest way to compare two strings.
+            bool result = String.Equals(root, root2, StringComparison.Ordinal);
+
+            Console.WriteLine(result);
+
+            Tabla tabla = farmaco();
             System.Console.ReadKey();
 
         }
