@@ -31,9 +31,10 @@ namespace ID3
 
         }
 
-        static void farmaco()
+        static Tabla farmaco()
         {
-            Columna presionArterial = new Columna(14, false);
+            Columna presionArterial = new Columna("presion arterial", 14, false);
+            presionArterial.addAtributo(new List<String>{"baja", "media", "alta"});
             presionArterial[0] = "alta";
             presionArterial[1] = "alta";
             presionArterial[2] = "baja";
@@ -49,7 +50,8 @@ namespace ID3
             presionArterial[12] = "baja";
             presionArterial[13] = "baja";
 
-            Columna azucarsAngre = new Columna(14, false);
+            Columna azucarsAngre = new Columna("azucar sangre", 14, false);
+            azucarsAngre.addAtributo(new List<String> { "bajo", "medio", "alto" });
             azucarsAngre[0] = "alto";
             azucarsAngre[1] = "alto";
             azucarsAngre[2] = "alto";
@@ -65,7 +67,8 @@ namespace ID3
             azucarsAngre[12] = "alto";
             azucarsAngre[13] = "alto";
 
-            Columna indiceColesterol = new Columna(14, false);
+            Columna indiceColesterol = new Columna("indice colesterol", 14, false);
+            indiceColesterol.addAtributo(new List<String> { "bajo", "medio", "alto" });
             indiceColesterol[0] = "alto";
             indiceColesterol[1] = "alto";
             indiceColesterol[2] = "bajo";
@@ -81,7 +84,8 @@ namespace ID3
             indiceColesterol[12] = "alto";
             indiceColesterol[13] = "bajo";
 
-            Columna alergiaAntibiotico = new Columna(14, false);
+            Columna alergiaAntibiotico = new Columna("alergia antibiotico", 14, false);
+            alergiaAntibiotico.addAtributo(new List<String> { "si", "no" });
             alergiaAntibiotico[0] = "no";
             alergiaAntibiotico[1] = "si";
             alergiaAntibiotico[2] = "no";
@@ -97,21 +101,49 @@ namespace ID3
             alergiaAntibiotico[12] = "si";
             alergiaAntibiotico[13] = "no";
 
-            Columna otrasAlergias = new Columna(14, false);
-            otrasAlergias[0] = "no";
-            otrasAlergias[1] = "no";
-            otrasAlergias[2] = "no";
-            otrasAlergias[3] = "si";
-            otrasAlergias[4] = "si";
+            Columna otrasAlergias = new Columna("otras alergias", 14, false);
+            otrasAlergias.addAtributo(new List<String> { "si", "no" });
+            otrasAlergias[0] = "si";
+            otrasAlergias[1] = "si";
+            otrasAlergias[2] = "si";
+            otrasAlergias[3] = "no";
+            otrasAlergias[4] = "no";
             otrasAlergias[5] = "si";
-            otrasAlergias[6] = "no";
+            otrasAlergias[6] = "si";
             otrasAlergias[7] = "si";
-            otrasAlergias[8] = "si";
+            otrasAlergias[8] = "no";
             otrasAlergias[9] = "si";
             otrasAlergias[10] = "si";
-            otrasAlergias[11] = "si";
+            otrasAlergias[11] = "no";
             otrasAlergias[12] = "si";
-            otrasAlergias[13] = "no";
+            otrasAlergias[13] = "si";
+
+            Columna administrarFarmacos = new Columna("administrar farmacos", 14, false);
+            administrarFarmacos.addAtributo(new List<String> { "si", "no" });
+            administrarFarmacos[0] = "no";
+            administrarFarmacos[1] = "no";
+            administrarFarmacos[2] = "no";
+            administrarFarmacos[3] = "si";
+            administrarFarmacos[4] = "si";
+            administrarFarmacos[5] = "si";
+            administrarFarmacos[6] = "no";
+            administrarFarmacos[7] = "si";
+            administrarFarmacos[8] = "si";
+            administrarFarmacos[9] = "si";
+            administrarFarmacos[10] = "si";
+            administrarFarmacos[11] = "si";
+            administrarFarmacos[12] = "si";
+            administrarFarmacos[13] = "no";
+
+            Tabla tabla = new Tabla();
+            tabla.agregarColumna(presionArterial);
+            tabla.agregarColumna(azucarsAngre);
+            tabla.agregarColumna(indiceColesterol);
+            tabla.agregarColumna(alergiaAntibiotico);
+            tabla.agregarColumna(otrasAlergias);
+            tabla.agregarColumna(administrarFarmacos);
+
+            return tabla;
 
 
 

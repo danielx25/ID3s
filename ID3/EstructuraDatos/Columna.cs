@@ -13,9 +13,12 @@ namespace ID3.EstructuraDatos
         private List<string> atributos = null;
         private bool isContinuo = false;
         private ArrayList lista;
+
+        private String clase;
         
-        public Columna(int numFilas, bool isContinuo)
+        public Columna(String clase, int numFilas, bool isContinuo)
         {
+            this.clase = clase;
             this.numFilas = numFilas;
             lista = new ArrayList();
             for (int i=0; i<numFilas; i++)
@@ -43,6 +46,11 @@ namespace ID3.EstructuraDatos
         public void addAtributo(List<String> attrs)
         {
             this.atributos = attrs;
+        }
+
+        public String getClase()
+        {
+            return this.clase;
         }
 
     }

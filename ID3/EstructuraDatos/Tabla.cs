@@ -38,6 +38,12 @@ namespace ID3.EstructuraDatos
         public void agregarColumna(Columna columna)
         {
             tabla.Add(columna);
+            clases.Add(columna.getClase());
+        }
+
+        public int getCountColumna()
+        {
+            return tabla.Count; 
         }
     }
 }
