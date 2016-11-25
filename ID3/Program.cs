@@ -26,7 +26,7 @@ namespace ID3
             // Ordinal is the fastest way to compare two strings.
             bool result = String.Equals(root, root2, StringComparison.Ordinal);
 
-            Console.WriteLine(result);
+            Console.WriteLine(resulto);
 
             Tabla tabla = farmaco();
             System.Console.ReadKey();

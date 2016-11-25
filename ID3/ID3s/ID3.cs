@@ -16,10 +16,11 @@ namespace ID3.ID3s
         
         public Nodo AlgoritmoID3(Tabla tabla, List<String> atributo_salida, List<String> atributos)
         {
-            Nodo raiz = new Nodo();
+            Nodo raiz = null;
             if(siTodosEjemplosSonLosMismos(tabla))
             {
                 //rellenar con el unico valor en la tabla
+                //raiz = Nodo();
                 return raiz;
             }
             if (atributos.Count == 0)//si no existe ningun atributo
@@ -39,12 +40,12 @@ namespace ID3.ID3s
             atributo = (String)columna[0];
             for (int i=1; i<columna.getTam(); i++)
             {
-                if (atributo == columna[i])
+                if (String.Equals(atributo, (String)columna[i], StringComparison.Ordinal)==false)
                 {
-
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
 
         public string elAtributoSAlidoMayorNumero(Tabla tabla)
