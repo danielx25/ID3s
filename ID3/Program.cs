@@ -1,4 +1,5 @@
 ﻿using ID3.EstructuraDatos;
+using ID3.ID3s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,16 +20,12 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            string root = @"C:\users";
-            string root2 = @"C:\Users";
-
-            // Use the overload of the Equals method that specifies a StringComparison.
-            // Ordinal is the fastest way to compare two strings.
-            bool result = String.Equals(root, root2, StringComparison.Ordinal);
-
-            Console.WriteLine(resulto);
-
             Tabla tabla = farmaco();
+            ID3_ id3 = new ID3_();
+            System.Console.WriteLine(id3.siTodosEjemplosSonLosMismos(tabla));
+            System.Console.WriteLine(id3.elAtributoSAlidoMayorNumero(tabla));
+            System.Console.WriteLine(id3.entropiaGeneral(tabla.getColumnaAtributoSalida()));
+            System.Console.WriteLine(id3.entropiaAtributo(tabla.getColumna(0), tabla.getColumnaAtributoSalida(), "alta"));
             System.Console.ReadKey();
 
         }
@@ -122,21 +119,22 @@ namespace ID3
 
             Columna administrarFarmacos = new Columna("administrar farmacos", 14, false);
             administrarFarmacos.addAtributo(new List<String> { "si", "no" });
-            administrarFarmacos[0] = "no";
-            administrarFarmacos[1] = "no";
-            administrarFarmacos[2] = "no";
-            administrarFarmacos[3] = "si";
-            administrarFarmacos[4] = "si";
+            administrarFarmacos[0] = "si";
+            administrarFarmacos[1] = "si";
+            administrarFarmacos[2] = "si";
+            
+            administrarFarmacos[3] = "no";
+            administrarFarmacos[4] = "no";
             administrarFarmacos[5] = "si";
-            administrarFarmacos[6] = "no";
+            administrarFarmacos[6] = "si";
             administrarFarmacos[7] = "si";
-            administrarFarmacos[8] = "si";
+            administrarFarmacos[8] = "no";
             administrarFarmacos[9] = "si";
             administrarFarmacos[10] = "si";
-            administrarFarmacos[11] = "si";
+            administrarFarmacos[11] = "no";
             administrarFarmacos[12] = "si";
-            administrarFarmacos[13] = "no";
-
+            administrarFarmacos[13] = "si";
+            
             Tabla tabla = new Tabla();
             tabla.agregarColumna(presionArterial);
             tabla.agregarColumna(azucarsAngre);

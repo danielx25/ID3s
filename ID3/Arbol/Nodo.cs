@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ID3.Arbol
 {
-    class Nodo
+    public class Nodo
     {
         private bool esHoja = false;
         private bool esContinuo = false;
@@ -16,7 +16,7 @@ namespace ID3.Arbol
         private List<Nodo> punteros = new List<Nodo>();
 
 
-        Nodo(String clase, List<String> atributos)
+        public Nodo(String clase, List<String> atributos)
         {
             this.clase = clase;
             this.atributos = atributos;
@@ -24,7 +24,7 @@ namespace ID3.Arbol
             punteros = new List<Nodo>();
         }
 
-        Nodo(String atributo_salida)
+        public Nodo(String atributo_salida)
         {
             clase = atributo_salida;
             esHoja = true;
@@ -33,7 +33,7 @@ namespace ID3.Arbol
             punteros = null;
         }
 
-        Nodo(String clase, double division)
+        public Nodo(String clase, double division)
         {
             this.clase = clase;
             this.division = division;

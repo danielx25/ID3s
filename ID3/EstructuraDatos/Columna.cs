@@ -43,6 +43,11 @@ namespace ID3.EstructuraDatos
             }
         }
 
+        public List<String> getAtributos()
+        {
+            return atributos;
+        }
+
         public void addAtributo(List<String> attrs)
         {
             this.atributos = attrs;
