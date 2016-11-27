@@ -42,7 +42,6 @@ namespace ID3.ID3s
             atributo = (String)columna[0];
             for (int i=1; i<columna.getTam(); i++)
             {
-                System.Console.WriteLine(atributo + "---" + columna[i]);
                 if (String.Equals(atributo, (String)columna[i], StringComparison.Ordinal)==false)
                 {
                     return false;
@@ -77,25 +76,44 @@ namespace ID3.ID3s
 
         public String seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributo_salida, List<String> atributos)
         {
-            double ganancia_informacion = 0.0;
-            double ganancia_atributo = 0.0;
-            for(int i=0; i<atributos.Count; i++)
+            double[] ganaciasClases = new double[tabla.getCountColumna() - 1];
+
+            for(int i=0; i<tabla.getCountColumna()-1; i++)
             {
-
+                ganaciasClases[i] = gananciaClase(tabla.getColumna(i), tabla.getColumnaAtributoSalida());
+                System.Console.WriteLine(ganaciasClases[i]);
             }
-
-            return null;
-
+            int indice = Array.IndexOf(ganaciasClases, ganaciasClases.Max());
+            return atributos[indice];
         }
 
-        public double entropiaGeneral(Columna atributoOjetivo)
+        public double gananciaClase(Columna clase, Columna atributoObjetivo)
         {
-            List<String> atributos = atributoOjetivo.getAtributos();
+            double resultado = 0.0;
+            List<String> atributos = clase.getAtributos();
+            double[] entropiaAtributos = new double[atributos.Count];
+            double entropiaGeneral = this.entropiaGeneral(atributoObjetivo);
+
+            for(int i=0; i<atributos.Count; i++)
+            {
+                entropiaAtributos[i] = entropiaAtributo(clase, atributoObjetivo, atributos[i]);
+                resultado += -((double)clase.getCountAtributo(atributos[i]) /clase.getTam())*entropiaAtributos[i];
+                System.Console.WriteLine(clase.getClase()+"|| "+atributos[i] + "===>"+((double)clase.getCountAtributo(atributos[i]) / clase.getTam()) * entropiaAtributos[i]);
+
+            }
+            System.Console.WriteLine();
+            resultado += entropiaGeneral;
+            return resultado;
+        }
+
+        public double entropiaGeneral(Columna atributoObjetivo)
+        {
+            List<String> atributos = atributoObjetivo.getAtributos();
             int[] contadorAtributos = new int[atributos.Count];
 
-            for (int i = 0; i < atributoOjetivo.getTam(); i++)
+            for (int i = 0; i < atributoObjetivo.getTam(); i++)
             {
-                String atributoC = (String)atributoOjetivo[i];
+                String atributoC = (String)atributoObjetivo[i];
 
                 for (int j = 0; j < atributos.Count; j++)
                 {
@@ -109,21 +127,21 @@ namespace ID3.ID3s
             for (int i = 0; i < contadorAtributos.Length; i++)
             {
                 
-                double division = (double)contadorAtributos[i] / atributoOjetivo.getTam();
+                double division = (double)contadorAtributos[i] / atributoObjetivo.getTam();
                 resultado +=-division* Math.Log(division, 2.0);
             }
             return resultado;
         }
 
-        public double entropiaAtributo(Columna clase, Columna atributoOjetivo, String atributo)
+        public double entropiaAtributo(Columna clase, Columna atributoObjetivo, String atributo)
         {
-            List<String> atributos = atributoOjetivo.getAtributos();
+            List<String> atributos = atributoObjetivo.getAtributos();
             int[] contadorAtributos = new int[atributos.Count];
             int total = 0;
 
-            for (int i = 0; i < atributoOjetivo.getTam(); i++)
+            for (int i = 0; i < atributoObjetivo.getTam(); i++)
             {
-                String atributoS = (String)atributoOjetivo[i];
+                String atributoS = (String)atributoObjetivo[i];
                 String atributoC = (String)clase[i];
 
                 for (int j = 0; j < atributos.Count; j++)
@@ -142,16 +160,12 @@ namespace ID3.ID3s
             for (int i = 0; i < contadorAtributos.Length; i++)
             {
 
-                double division = (double)contadorAtributos[i] / total;
-                resultado=-division * (Math.Log(division)/Math.Log(2.0));
-                System.Console.WriteLine(contadorAtributos[i]+"--"+ total+"--"+division+"= "+resultado);
+                double division = contadorAtributos[i] / (double)total;
+                if(division>0)
+                resultado+=-division * (Math.Log(division)/Math.Log(2.0));
+                //System.Console.WriteLine("              ====> " + division+ " ["+ contadorAtributos[i] + "]/"+ " [" + total+ "]");
             }
             return resultado;
-        }
-
-        public double gananciaInformacion(int columna, Tabla tabla)
-        {
-            return 0.0;
         }
 
 

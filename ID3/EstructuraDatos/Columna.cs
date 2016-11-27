@@ -63,5 +63,18 @@ namespace ID3.EstructuraDatos
             return lista.Count;
         }
 
+        public int getCountAtributo(String atributo)
+        {
+            int contador = 0;
+            for(int i=0; i<lista.Count;i++)
+            {
+                if(atributo.Equals(lista[i]))
+                {
+                    contador += 1;
+                }
+            }
+            return contador;
+        }
+
     }
 }
