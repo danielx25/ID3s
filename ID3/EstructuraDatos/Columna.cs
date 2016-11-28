@@ -9,7 +9,6 @@ namespace ID3.EstructuraDatos
 {
     public class Columna
     {
-        private int numFilas = 0;
         private List<string> atributos = null;
         private bool isContinuo = false;
         private ArrayList lista;
@@ -19,7 +18,6 @@ namespace ID3.EstructuraDatos
         public Columna(String clase, int numFilas, bool isContinuo)
         {
             this.clase = clase;
-            this.numFilas = numFilas;
             lista = new ArrayList();
             for (int i=0; i<numFilas; i++)
             {
@@ -43,6 +41,11 @@ namespace ID3.EstructuraDatos
             }
         }
 
+        public List<String> getAtributos()
+        {
+            return atributos;
+        }
+
         public void addAtributo(List<String> attrs)
         {
             this.atributos = attrs;
@@ -56,6 +59,32 @@ namespace ID3.EstructuraDatos
         public int getTam()
         {
             return lista.Count;
+        }
+
+        public int getCountAtributo(String atributo)
+        {
+            int contador = 0;
+            for(int i=0; i<lista.Count;i++)
+            {
+                if(atributo.Equals(lista[i]))
+                {
+                    contador += 1;
+                }
+            }
+            return contador;
+        }
+
+        protected void setValores(ArrayList array, List<string> atrr)
+        {
+            lista = new ArrayList(array);
+            atributos = new List<string>(atrr);
+        }
+
+        public Columna Clone()
+        {
+            Columna columna = new Columna(this.clase, lista.Count, this.isContinuo);
+            columna.setValores(lista, atributos);
+            return columna;
         }
 
     }
