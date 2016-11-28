@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace ID3.EstructuraDatos
 {
-    public class Tabla
-    {
-        private int numFilas = 0;
-        private int numColumna = 0;
+    public class Tabla{
         private List<String> clases;
         private List<Columna> tabla;
 
@@ -60,6 +57,29 @@ namespace ID3.EstructuraDatos
         public int getCountColumna()
         {
             return tabla.Count; 
+        }
+
+        public int getCountfilas()
+        {
+            return tabla[0].getTam();
+        }
+
+        public void eliminarColumna(int indice)
+        {
+            tabla.RemoveAt(indice);
+            clases.RemoveAt(indice);
+        }
+
+        public Tabla Clone()
+        {
+            Tabla nuevaTabla = new Tabla();
+
+            for (int i=0; i<tabla.Count; i++)
+            {
+                Columna columna = tabla[i].Clone();
+                nuevaTabla.agregarColumna(columna);
+            }
+            return nuevaTabla;
         }
     }
 }

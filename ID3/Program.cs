@@ -25,7 +25,7 @@ namespace ID3
             //System.Console.WriteLine(id3.siTodosEjemplosSonLosMismos(tabla));
             //System.Console.WriteLine(id3.elAtributoSAlidoMayorNumero(tabla));
             //System.Console.WriteLine(id3.entropiaGeneral(tabla.getColumnaAtributoSalida()));
-            System.Console.WriteLine(id3.seleccionarAtributoConMayorGanancia(tabla, new List<string> {"si", "no"}, tabla.getClases()));
+            //System.Console.WriteLine(id3.seleccionarAtributoConMayorGanancia(tabla, new List<string> {"si", "no"}, tabla.getClases()));
             //System.Console.WriteLine(id3.entropiaAtributo(tabla.getColumna(7), tabla.getColumnaAtributoSalida(), "strong"));
             //System.Console.WriteLine(id3.gananciaClase(tabla.getColumna(0), tabla.getColumnaAtributoSalida()));
             System.Console.ReadKey();
@@ -241,6 +241,12 @@ namespace ID3
             tabla.agregarColumna(humidity);
             tabla.agregarColumna(wind);
             tabla.agregarColumna(playBall);
+
+            Tabla tablaModificada = (Tabla)tabla.Clone();
+            tablaModificada.eliminarColumna(0);
+            System.Console.WriteLine("tabla: "+ tabla.getCountColumna());
+            System.Console.WriteLine("tabla M: " + tablaModificada.getCountColumna());
+
 
             return tabla;
 

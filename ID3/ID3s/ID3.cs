@@ -31,7 +31,26 @@ namespace ID3.ID3s
                 raiz = new Nodo(elAtributoSAlidoMayorNumero(tabla));
                 return raiz;
             }
-            String atributo = seleccionarAtributoConMayorGanancia(tabla, atributos_salida, atributos);
+            int indiceClase = seleccionarAtributoConMayorGanancia(tabla, atributos_salida, atributos);
+            Columna clase = tabla.getColumna(indiceClase);
+            List<String> atributosClase = clase.getAtributos();
+
+            for (int i=0; i<atributosClase.Count; i++)
+            {
+                tabla = particionarTabla(tabla, clase, atributosClase[i]);
+                if(tabla.getCountfilas() ==0)//ejemplos estan vacios
+                {
+                    raiz = new Nodo(elAtributoSAlidoMayorNumero(tabla));
+                    return raiz;
+                }
+                else
+                {
+                    Tabla nuevaTabla = (Tabla)tabla.Clone();
+                    nuevaTabla.eliminarColumna(indiceClase);
+       
+                    return algoritmoID3(tabla, atributo_salida, nuevaTabla.getClases());
+                }
+            }
             return null;
         }
 
@@ -74,7 +93,7 @@ namespace ID3.ID3s
             return atributos[indice];
         }
 
-        public String seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributo_salida, List<String> atributos)
+        public int seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributo_salida, List<String> atributos)
         {
             double[] ganaciasClases = new double[tabla.getCountColumna() - 1];
 
@@ -84,7 +103,7 @@ namespace ID3.ID3s
                 System.Console.WriteLine(ganaciasClases[i]);
             }
             int indice = Array.IndexOf(ganaciasClases, ganaciasClases.Max());
-            return atributos[indice];
+            return indice;
         }
 
         public double gananciaClase(Columna clase, Columna atributoObjetivo)
@@ -168,7 +187,10 @@ namespace ID3.ID3s
             return resultado;
         }
 
-
+        public Tabla particionarTabla(Tabla tabla, Columna clase, String atributo)
+        {
+            return null;
+        }
 
     }
 }
