@@ -48,7 +48,7 @@ namespace ID3.ID3s
                     Tabla nuevaTabla = (Tabla)tabla.Clone();
                     nuevaTabla.eliminarColumna(indiceClase);
        
-                    return algoritmoID3(tabla, atributo_salida, nuevaTabla.getClases());
+                    raiz.agregarNodo(algoritmoID3(tabla, atributo_salida, nuevaTabla.getClases()));
                 }
             }
             return null;
