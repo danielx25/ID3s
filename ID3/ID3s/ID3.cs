@@ -10,11 +10,23 @@ namespace ID3.ID3s
 {
     public class ID3_
     {
-        private List<String> atributos_salida = null;
-        private List<String> atributos = null;
         private Tabla tabla = null;
+        private Arbol_ arbol;
+        public void cargarTabla(Tabla tabla)
+        {
+            this.tabla = tabla;
+            arbol = new Arbol_();
+        }
+
+        public void iniciarID3()
+        {
+            arbol.setRaiz(algoritmoID3(tabla, tabla.getClases()));
+            System.Console.WriteLine(arbol);
+            //Nodo s=algoritmoID3(this.tabla, tabla.getClases());
+            //System.Console.WriteLine(s.getNombreClase());
+        }
         
-        public Nodo algoritmoID3(Tabla tabla, List<String> atributo_salida, List<String> atributos)
+        public Nodo algoritmoID3(Tabla tabla, List<String> atributos)
         {
             Nodo raiz = null;
             if(siTodosEjemplosSonLosMismos(tabla))
@@ -31,27 +43,28 @@ namespace ID3.ID3s
                 raiz = new Nodo(elAtributoSAlidoMayorNumero(tabla));
                 return raiz;
             }
-            int indiceClase = seleccionarAtributoConMayorGanancia(tabla, atributos_salida, atributos);
+            int indiceClase = seleccionarAtributoConMayorGanancia(tabla, atributos);
             Columna clase = tabla.getColumna(indiceClase);
             List<String> atributosClase = clase.getAtributos();
+            raiz = new Nodo(clase.getClase(), atributosClase);
+
+            Tabla nuevaTabla = null;
 
             for (int i=0; i<atributosClase.Count; i++)
             {
-                tabla = particionarTabla(tabla, clase, atributosClase[i]);
-                if(tabla.getCountfilas() ==0)//ejemplos estan vacios
+                nuevaTabla = (Tabla)tabla.Clone();
+                particionarTabla(nuevaTabla, indiceClase, atributosClase[i]);
+                if(nuevaTabla.getCountfilas() ==0)//ejemplos estan vacios
                 {
-                    raiz = new Nodo(elAtributoSAlidoMayorNumero(tabla));
-                    return raiz;
+                    raiz.agregarNodo(new Nodo(elAtributoSAlidoMayorNumero(tabla)));
                 }
                 else
-                {
-                    Tabla nuevaTabla = (Tabla)tabla.Clone();
+                { 
                     nuevaTabla.eliminarColumna(indiceClase);
-       
-                    raiz.agregarNodo(algoritmoID3(tabla, atributo_salida, nuevaTabla.getClases()));
+                    raiz.agregarNodo(algoritmoID3(nuevaTabla, nuevaTabla.getClases()));
                 }
             }
-            return null;
+            return raiz;
         }
 
         public bool siTodosEjemplosSonLosMismos(Tabla tabla)
@@ -93,7 +106,7 @@ namespace ID3.ID3s
             return atributos[indice];
         }
 
-        public int seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributo_salida, List<String> atributos)
+        public int seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributos)
         {
             double[] ganaciasClases = new double[tabla.getCountColumna() - 1];
 
@@ -187,9 +200,19 @@ namespace ID3.ID3s
             return resultado;
         }
 
-        public Tabla particionarTabla(Tabla tabla, Columna clase, String atributo)
+        public void particionarTabla(Tabla tabla, int indiceClase, String atributo)
         {
-            return null;
+            Columna clase = tabla.getColumna(indiceClase);
+
+            for (int i = 0; i < clase.getTam(); i++)
+            {
+                String cadena = (String)clase[i];
+                if (cadena.Equals(atributo) == false)
+                {
+                    tabla.eliminarFilas(i);
+                    i -= 1;
+                }
+            }
         }
 
     }

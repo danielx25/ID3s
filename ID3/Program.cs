@@ -22,6 +22,11 @@ namespace ID3
 
             Tabla tabla = farmaco();
             ID3_ id3 = new ID3_();
+            id3.cargarTabla(tabla);
+            id3.iniciarID3();
+            //System.Console.WriteLine(tabla);
+            
+
             //System.Console.WriteLine(id3.siTodosEjemplosSonLosMismos(tabla));
             //System.Console.WriteLine(id3.elAtributoSAlidoMayorNumero(tabla));
             //System.Console.WriteLine(id3.entropiaGeneral(tabla.getColumnaAtributoSalida()));

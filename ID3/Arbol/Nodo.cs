@@ -41,6 +41,18 @@ namespace ID3.Arbol
             punteros = new List<Nodo>();
         }
 
+        public object this[int indice]
+        {
+            get
+            {
+                return punteros[indice];
+            }
+
+            set
+            {
+            }
+        }
+
         public void agregarNodo(Nodo nodo)
         {
             punteros.Add(nodo);
@@ -55,6 +67,26 @@ namespace ID3.Arbol
         {
             int i = atributos.IndexOf(atributo);
             return punteros[i];
+        }
+
+        public String getNombreClase()
+        {
+            return clase;
+        }
+
+        public bool getEsHoja()
+        {
+            return this.esHoja;
+        } 
+
+        public int getCountPuntero()
+        {
+            return punteros.Count();
+        }
+
+        public List<String> getAtributos()
+        {
+            return atributos;
         }
     }
 }

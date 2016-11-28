@@ -74,11 +74,17 @@ namespace ID3.EstructuraDatos
             return contador;
         }
 
+        public void eliminarFila(int indice)
+        {
+            lista.RemoveAt(indice);
+        }
+
         protected void setValores(ArrayList array, List<string> atrr)
         {
             lista = new ArrayList(array);
             atributos = new List<string>(atrr);
         }
+
 
         public Columna Clone()
         {

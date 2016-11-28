@@ -70,6 +70,31 @@ namespace ID3.EstructuraDatos
             clases.RemoveAt(indice);
         }
 
+        public void eliminarFilas(int indice)
+        {
+            for (int i = 0; i < tabla.Count; i++)
+            {
+                tabla[i].eliminarFila(indice);
+              
+            }
+        }
+
+        public override string ToString()
+        {
+            string cadena = "";
+            
+
+            for (int j=0; j<this.getCountfilas(); j++)
+            {
+                for (int i = 0; i < tabla.Count; i++)
+                {
+                    System.Console.Write("|"+tabla[i][j]+"     |");
+                }
+                System.Console.WriteLine();
+            }
+            return cadena;
+        }
+
         public Tabla Clone()
         {
             Tabla nuevaTabla = new Tabla();
