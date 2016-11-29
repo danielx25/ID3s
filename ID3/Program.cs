@@ -20,7 +20,7 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            Tabla tabla = farmaco();
+            Tabla tabla = playball();
             ID3_ id3 = new ID3_();
             id3.cargarTabla(tabla);
             id3.iniciarID3();
@@ -143,8 +143,23 @@ namespace ID3
             administrarFarmacos[12] = "si";
             administrarFarmacos[13] = "si";
 
-            
+     
+           
 
+            Tabla tabla = new Tabla();
+            tabla.agregarColumna(presionArterial);
+            tabla.agregarColumna(azucarsAngre);
+            tabla.agregarColumna(indiceColesterol);
+            tabla.agregarColumna(alergiaAntibiotico);
+            tabla.agregarColumna(otrasAlergias);
+            tabla.agregarColumna(administrarFarmacos);
+
+
+            return tabla;
+        }
+
+        static Tabla playball()
+        {
             Columna outlook = new Columna("outlook", 14, false);
             outlook.addAtributo(new List<String> { "sunny", "overcast", "rain" });
             outlook[0] = "sunny";
@@ -180,7 +195,7 @@ namespace ID3
             temperature[13] = "mild";
 
             Columna humidity = new Columna("humidity", 14, false);
-            humidity.addAtributo(new List<String> { "high", "normal"});
+            humidity.addAtributo(new List<String> { "high", "normal" });
             humidity[0] = "high";
             humidity[1] = "high";
             humidity[2] = "high";
@@ -231,32 +246,14 @@ namespace ID3
             playBall[11] = "yes";
             playBall[12] = "yes";
             playBall[13] = "no";
-           
 
             Tabla tabla = new Tabla();
-            /*
-            tabla.agregarColumna(presionArterial);
-            tabla.agregarColumna(azucarsAngre);
-            tabla.agregarColumna(indiceColesterol);
-            tabla.agregarColumna(alergiaAntibiotico);
-            tabla.agregarColumna(otrasAlergias);
-            tabla.agregarColumna(administrarFarmacos);*/
             tabla.agregarColumna(outlook);
             tabla.agregarColumna(temperature);
             tabla.agregarColumna(humidity);
             tabla.agregarColumna(wind);
             tabla.agregarColumna(playBall);
-
-            Tabla tablaModificada = (Tabla)tabla.Clone();
-            tablaModificada.eliminarColumna(0);
-            System.Console.WriteLine("tabla: "+ tabla.getCountColumna());
-            System.Console.WriteLine("tabla M: " + tablaModificada.getCountColumna());
-
-
             return tabla;
-
-
-
         }
     }
 }

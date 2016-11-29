@@ -113,7 +113,7 @@ namespace ID3.ID3s
             for(int i=0; i<tabla.getCountColumna()-1; i++)
             {
                 ganaciasClases[i] = gananciaClase(tabla.getColumna(i), tabla.getColumnaAtributoSalida());
-                System.Console.WriteLine(ganaciasClases[i]);
+                System.Console.WriteLine("entropia: "+ganaciasClases[i]);
             }
             int indice = Array.IndexOf(ganaciasClases, ganaciasClases.Max());
             return indice;
