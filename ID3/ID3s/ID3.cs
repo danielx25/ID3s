@@ -160,6 +160,7 @@ namespace ID3.ID3s
             {
                 
                 double division = (double)contadorAtributos[i] / atributoObjetivo.getTam();
+                if (division>0)
                 resultado +=-division* Math.Log(division, 2.0);
             }
             return resultado;

@@ -20,7 +20,7 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            Tabla tabla = playball();
+            Tabla tabla = farmaco();
             ID3_ id3 = new ID3_();
             id3.cargarTabla(tabla);
             id3.iniciarID3();
@@ -255,5 +255,82 @@ namespace ID3
             tabla.agregarColumna(playBall);
             return tabla;
         }
+
+        static Tabla transporte()
+        {
+            Columna gender = new Columna("gender", 10, false);
+            gender.addAtributo(new List<String> { "male", "female"});
+            gender[0] = "male";
+            gender[1] = "male";
+            gender[2] = "female";
+            gender[3] = "female";
+            gender[4] = "male";
+            gender[5] = "male";
+            gender[6] = "female";
+            gender[7] = "female";
+            gender[8] = "male";
+            gender[9] = "female";
+
+            Columna carOwnership = new Columna("carOwnership", 10, false);
+            carOwnership.addAtributo(new List<String> { "0", "1", "2" });
+            carOwnership[0] = "0";
+            carOwnership[1] = "1";
+            carOwnership[2] = "1";
+            carOwnership[3] = "0";
+            carOwnership[4] = "1";
+            carOwnership[5] = "0";
+            carOwnership[6] = "1";
+            carOwnership[7] = "1";
+            carOwnership[8] = "2";
+            carOwnership[9] = "2";
+
+            Columna travelCost = new Columna("travelCost", 10, false);
+            travelCost.addAtributo(new List<String> { "cheap", "standard", "expensive"});
+            travelCost[0] = "cheap";
+            travelCost[1] = "cheap";
+            travelCost[2] = "cheap";
+            travelCost[3] = "cheap";
+            travelCost[4] = "cheap";
+            travelCost[5] = "standard";
+            travelCost[6] = "standard";
+            travelCost[7] = "expensive";
+            travelCost[8] = "expensive";
+            travelCost[9] = "expensive";
+
+            Columna incomeLevel = new Columna("incomeLevel", 10, false);
+            incomeLevel.addAtributo(new List<String> { "low", "medium", "high" });
+            incomeLevel[0] = "low";
+            incomeLevel[1] = "medium";
+            incomeLevel[2] = "medium";
+            incomeLevel[3] = "low";
+            incomeLevel[4] = "medium";
+            incomeLevel[5] = "medium";
+            incomeLevel[6] = "medium";
+            incomeLevel[7] = "high";
+            incomeLevel[8] = "medium";
+            incomeLevel[9] = "high";
+
+            Columna transport = new Columna("transport", 10, false);
+            transport.addAtributo(new List<String> { "bus", "train", "car" });
+            transport[0] = "bus";
+            transport[1] = "bus";
+            transport[2] = "train";
+            transport[3] = "bus";
+            transport[4] = "bus";
+            transport[5] = "train";
+            transport[6] = "train";
+            transport[7] = "car";
+            transport[8] = "car";
+            transport[9] = "car";
+
+            Tabla tabla = new Tabla();
+            tabla.agregarColumna(gender);
+            tabla.agregarColumna(carOwnership);
+            tabla.agregarColumna(travelCost);
+            tabla.agregarColumna(incomeLevel);
+            tabla.agregarColumna(transport);
+            return tabla;
+        }
+
     }
 }
