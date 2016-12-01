@@ -43,7 +43,7 @@ namespace ID3.ID3s
                 raiz = new Nodo(elAtributoSAlidoMayorNumero(tabla));
                 return raiz;
             }
-            int indiceClase = seleccionarAtributoConMayorGanancia(tabla, atributos);
+            int indiceClase = seleccionarAtributoConMayorGanancia(tabla, atributos, raiz);
             Columna clase = tabla.getColumna(indiceClase);
             List<String> atributosClase = clase.getAtributos();
             raiz = new Nodo(clase.getClase(), atributosClase);
@@ -106,7 +106,7 @@ namespace ID3.ID3s
             return atributos[indice];
         }
 
-        public int seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributos)
+        public int seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributos, Nodo nodo)
         {
             double[] ganaciasClases = new double[tabla.getCountColumna() - 1];
 
@@ -116,6 +116,7 @@ namespace ID3.ID3s
                 System.Console.WriteLine("entropia: "+ganaciasClases[i]);
             }
             int indice = Array.IndexOf(ganaciasClases, ganaciasClases.Max());
+            //nodo.setGanancia(ganaciasClases.Max());
             return indice;
         }
 

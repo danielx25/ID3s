@@ -20,7 +20,7 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            Tabla tabla = farmaco();
+            Tabla tabla = playball();
             ID3_ id3 = new ID3_();
             id3.cargarTabla(tabla);
             id3.iniciarID3();
@@ -331,6 +331,7 @@ namespace ID3
             tabla.agregarColumna(transport);
             return tabla;
         }
+
 
     }
 }
