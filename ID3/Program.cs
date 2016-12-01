@@ -36,6 +36,65 @@ namespace ID3
             System.Console.ReadKey();
 
         }
+        
+        static Tabla animal() {
+
+            Columna peludo = new Columna("peludo",8,false);
+            peludo.addAtributo(new List<string> { "si", "no" });
+            peludo[0] = "si";
+            peludo[1] = "no";
+            peludo[2] = "si";
+            peludo[3] = "si";
+            peludo[4] = "si";
+            peludo[5] = "si";
+            peludo[6] = "no";
+            peludo[7] = "no";
+
+            Columna edad = new Columna("edad", 8, false);
+            edad.addAtributo(new List<string> { "viejo", "joven" });
+            edad[0] = "viejo";
+            edad[1] = "joven";
+            edad[2] = "joven";
+            edad[3] = "viejo";
+            edad[4] = "joven";
+            edad[5] = "joven";
+            edad[6] = "joven";
+            edad[7] = "viejo";
+
+            Columna tamaño = new Columna("tamaño", 8, false);
+            tamaño.addAtributo(new List<string> { "grande","mediano","pequeño"});
+
+            tamaño[0] = "grande";
+            tamaño[1] = "grande";
+            tamaño[2] = "mediano";
+            tamaño[3] = "pequeño";
+            tamaño[4] = "pequeño";
+            tamaño[5] = "grande";
+            tamaño[6] = "pequeño";
+            tamaño[7] = "grande";
+
+            Columna clase = new Columna("clase", 8, false);
+            clase.addAtributo(new List<string> { "leon", "no leon"});
+
+            clase[0] = "leon";
+            clase[1] = "no leon";
+            clase[2] = "leon";
+            clase[3] = "no leon";
+            clase[4] = "no leon";
+            clase[5] = "leon";
+            clase[6] = "no leon";
+            clase[7] = "no leon";
+
+            Tabla tabla = new Tabla();
+            tabla.agregarColumna(peludo);
+            tabla.agregarColumna(edad);
+            tabla.agregarColumna(tamaño);
+            tabla.agregarColumna(clase);
+
+            return tabla;
+
+
+        }
 
         static Tabla farmaco()
         {
