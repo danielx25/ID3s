@@ -14,3 +14,11 @@ C:\Users\danielx\Desktop\ID3s\ID3\bin\Debug\ID3.pdb
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.csprojResolveAssemblyReference.cache
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.Properties.Resources.resources
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.csproj.GenerateResource.Cache
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\bin\Debug\ID3.exe.config
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\obj\Debug\ID3.exe
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\obj\Debug\ID3.pdb
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\bin\Debug\ID3.exe
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\bin\Debug\ID3.pdb
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\obj\Debug\ID3.csprojResolveAssemblyReference.cache
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\obj\Debug\ID3.Properties.Resources.resources
+C:\Users\Yeyo\Documents\GitHub\ID3s\ID3\obj\Debug\ID3.csproj.GenerateResource.Cache

@@ -20,7 +20,7 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            Tabla tabla = playball();
+            Tabla tabla = farmaco();
             ID3_ id3 = new ID3_();
             id3.cargarTabla(tabla);
             id3.iniciarID3();
@@ -117,7 +117,7 @@ namespace ID3
             presionArterial[13] = "baja";
 
             Columna azucarsAngre = new Columna("azucar sangre", 14, false);
-            azucarsAngre.addAtributo(new List<String> { "bajo", "medio", "alto" });
+            azucarsAngre.addAtributo(new List<String> { "bajo", "alto" });
             azucarsAngre[0] = "alto";
             azucarsAngre[1] = "alto";
             azucarsAngre[2] = "alto";
@@ -134,7 +134,7 @@ namespace ID3
             azucarsAngre[13] = "alto";
 
             Columna indiceColesterol = new Columna("indice colesterol", 14, false);
-            indiceColesterol.addAtributo(new List<String> { "bajo", "medio", "alto" });
+            indiceColesterol.addAtributo(new List<String> { "bajo", "alto" });
             indiceColesterol[0] = "alto";
             indiceColesterol[1] = "alto";
             indiceColesterol[2] = "bajo";
@@ -169,20 +169,20 @@ namespace ID3
 
             Columna otrasAlergias = new Columna("otras alergias", 14, false);
             otrasAlergias.addAtributo(new List<String> { "si", "no" });
-            otrasAlergias[0] = "si";
-            otrasAlergias[1] = "si";
-            otrasAlergias[2] = "si";
-            otrasAlergias[3] = "no";
-            otrasAlergias[4] = "no";
+            otrasAlergias[0] = "no";
+            otrasAlergias[1] = "no";
+            otrasAlergias[2] = "no";
+            otrasAlergias[3] = "si";
+            otrasAlergias[4] = "si";
             otrasAlergias[5] = "si";
-            otrasAlergias[6] = "si";
+            otrasAlergias[6] = "no";
             otrasAlergias[7] = "si";
-            otrasAlergias[8] = "no";
+            otrasAlergias[8] = "si";
             otrasAlergias[9] = "si";
             otrasAlergias[10] = "si";
-            otrasAlergias[11] = "no";
+            otrasAlergias[11] = "si";
             otrasAlergias[12] = "si";
-            otrasAlergias[13] = "si";
+            otrasAlergias[13] = "no";
 
             Columna administrarFarmacos = new Columna("administrar farmacos", 14, false);
             administrarFarmacos.addAtributo(new List<String> { "si", "no" });
