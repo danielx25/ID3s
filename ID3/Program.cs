@@ -20,7 +20,7 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            Tabla tabla = farmaco();
+            Tabla tabla = tratamiento();
             ID3_ id3 = new ID3_();
             id3.cargarTabla(tabla);
             id3.iniciarID3();
@@ -36,7 +36,111 @@ namespace ID3
             System.Console.ReadKey();
 
         }
-        
+
+        static Tabla tratamiento()
+        {
+
+            Columna presion = new Columna("presion arterial", 14, false);
+            presion.addAtributo(new List<string> { "alta", "normal", "baja" });
+            presion[0] = "alta";
+            presion[1] = "alta";
+            presion[2] = "normal";
+            presion[3] = "baja";
+            presion[4] = "baja";
+            presion[5] = "baja";
+            presion[6] = "normal";
+            presion[7] = "alta";
+            presion[8] = "alta";
+            presion[9] = "baja";
+            presion[10] = "alta";
+            presion[11] = "normal";
+            presion[12] = "normal";
+            presion[13] = "baja";
+
+            Columna urea = new Columna("urea en sangre", 14, false);
+            urea.addAtributo(new List<string> { "alta", "normal", "baja" });
+            urea[0] = "alta";
+            urea[1] = "alta";
+            urea[2] = "alta";
+            urea[3] = "normal";
+            urea[4] = "baja";
+            urea[5] = "baja";
+            urea[6] = "baja";
+            urea[7] = "normal";
+            urea[8] = "baja";
+            urea[9] = "normal";
+            urea[10] = "normal";
+            urea[11] = "normal";
+            urea[12] = "alta";
+            urea[13] = "normal";
+
+            Columna gota = new Columna("gota", 14, false);
+            gota.addAtributo(new List<string> { "si", "no" });
+
+            gota[0] = "si";
+            gota[1] = "si";
+            gota[2] = "si";
+            gota[3] = "si";
+            gota[4] = "no";
+            gota[5] = "no";
+            gota[6] = "no";
+            gota[7] = "si";
+            gota[8] = "no";
+            gota[9] = "no";
+            gota[10] = "no";
+            gota[11] = "si";
+            gota[12] = "no";
+            gota[13] = "si";
+
+            Columna hipo = new Columna("hipotiroidismo", 14, false);
+            hipo.addAtributo(new List<string> { "si", "no" });
+
+            hipo[0] = "no";
+            hipo[1] = "si";
+            hipo[2] = "no";
+            hipo[3] = "no";
+            hipo[4] = "no";
+            hipo[5] = "si";
+            hipo[6] = "si";
+            hipo[7] = "no";
+            hipo[8] = "no";
+            hipo[9] = "no";
+            hipo[10] = "si";
+            hipo[11] = "si";
+            hipo[12] = "no";
+            hipo[13] = "si";
+
+            Columna admin = new Columna("administrar tratamiento", 14, false);
+            admin.addAtributo(new List<string> { "si", "no" });
+
+            admin[0] = "no";
+            admin[1] = "no";
+            admin[2] = "si";
+            admin[3] = "si";
+            admin[4] = "si";
+            admin[5] = "no";
+            admin[6] = "si";
+            admin[7] = "no";
+            admin[8] = "si";
+            admin[9] = "si";
+            admin[10] = "si";
+            admin[11] = "si";
+            admin[12] = "si";
+            admin[13] = "no";
+
+
+            Tabla tabla = new Tabla();
+            tabla.agregarColumna(presion);
+            tabla.agregarColumna(urea);
+            tabla.agregarColumna(gota);
+            tabla.agregarColumna(hipo);
+            tabla.agregarColumna(admin);
+
+            return tabla;
+
+
+        }
+
         static Tabla animal() {
 
             Columna peludo = new Columna("peludo",8,false);
