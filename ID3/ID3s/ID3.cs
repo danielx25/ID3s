@@ -113,7 +113,7 @@ namespace ID3.ID3s
             for(int i=0; i<tabla.getCountColumna()-1; i++)
             {
                 ganaciasClases[i] = gananciaClase(tabla.getColumna(i), tabla.getColumnaAtributoSalida());
-                System.Console.WriteLine("entropia: "+ganaciasClases[i]);
+                System.Console.WriteLine("ganancia: "+ganaciasClases[i]);
             }
             int indice = Array.IndexOf(ganaciasClases, ganaciasClases.Max());
             //nodo.setGanancia(ganaciasClases.Max());
@@ -132,7 +132,7 @@ namespace ID3.ID3s
                 entropiaAtributos[i] = entropiaAtributo(clase, atributoObjetivo, atributos[i]);
                 resultado += -((double)clase.getCountAtributo(atributos[i]) /clase.getTam())*entropiaAtributos[i];
                 System.Console.WriteLine(clase.getClase()+"|| "+atributos[i] + "===>"+((double)clase.getCountAtributo(atributos[i]) / clase.getTam()) * entropiaAtributos[i]);
-
+                System.Console.WriteLine("ganancia: "+entropiaGeneral+" ---> "+resultado);
             }
             System.Console.WriteLine();
             resultado += entropiaGeneral;
@@ -194,10 +194,11 @@ namespace ID3.ID3s
             for (int i = 0; i < contadorAtributos.Length; i++)
             {
 
-                double division = contadorAtributos[i] / (double)total;
+                double division = (contadorAtributos[i] / (double)total);
                 if(division>0)
-                resultado+=-division * (Math.Log(division)/Math.Log(2.0));
-                //System.Console.WriteLine("              ====> " + division+ " ["+ contadorAtributos[i] + "]/"+ " [" + total+ "]");
+                resultado+=(-division) * (Math.Log(division)/Math.Log(2.0));
+                System.Console.WriteLine("resultado: "+ resultado);
+                System.Console.WriteLine("              ====> " + division+ " ["+ contadorAtributos[i] + "]/"+ " [" + total+ "]");
             }
             return resultado;
         }
