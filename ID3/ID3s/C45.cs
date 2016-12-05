@@ -10,9 +10,65 @@ namespace ID3.ID3s
 {
     class C45: ID3_
     {
-        public Nodo algoritmoC45()
+        private Tabla tabla = null;
+        private Arbol_ arbolc45;
+
+        //public Nodo algoritmoC45()
+        //{
+        //    return null;
+        //}
+
+        public void cargarTablaC45(Tabla tabla)
         {
-            return null;
+            this.tabla = tabla;
+            arbolc45 = new Arbol_();
+        }
+
+        public void iniciarC45()
+        {
+            arbolc45.setRaiz(algoritmoC45(tabla, tabla.getClases()));
+            System.Console.WriteLine(arbolc45);
+        }
+
+        public Nodo algoritmoC45(Tabla tabla, List<String> atributos)
+        {
+            Nodo raiz = null;
+            if (siTodosEjemplosSonLosMismos(tabla))
+            {
+                Columna columna = tabla.getColumnaAtributoSalida();
+                String aSalida = (String)columna[0];
+                raiz = new Nodo(aSalida);
+                return raiz;
+            }
+            if (atributos.Count == 0)//si no existe ningun atributo
+            {
+                //elAtributoSAlidoMayorNumero()
+                //el mayor numero de valor de salida
+                raiz = new Nodo(elAtributoSAlidoMayorNumero(tabla));
+                return raiz;
+            }
+            int indiceClase = this.seleccionarAtributoMayorRatio(tabla);
+            Columna clase = tabla.getColumna(indiceClase);
+            List<String> atributosClase = clase.getAtributos();
+            raiz = new Nodo(clase.getClase(), atributosClase); // el nodo viene a ser la "clase" y los atributos las ramas
+
+            Tabla nuevaTabla = null;
+
+            for (int i = 0; i < atributosClase.Count; i++)
+            {
+                nuevaTabla = (Tabla)tabla.Clone();
+                particionarTabla(nuevaTabla, indiceClase, atributosClase[i]);
+                if (nuevaTabla.getCountfilas() == 0)//ejemplos estan vacios
+                {
+                    raiz.agregarNodo(new Nodo(elAtributoSAlidoMayorNumero(tabla)));
+                }
+                else
+                {
+                    nuevaTabla.eliminarColumna(indiceClase);
+                    raiz.agregarNodo(algoritmoC45(nuevaTabla, nuevaTabla.getClases()));
+                }
+            }
+            return raiz;
         }
 
         public new int seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributos, Nodo nodo)
@@ -20,9 +76,55 @@ namespace ID3.ID3s
             return 0;
         }
 
-        public double radioGananciaClase(Columna clase, Columna atributoObjetivo)
+        public double ratioGananciaClase(Columna clase, Columna atributoObjetivo)
         {
             return 0;
+        }
+
+        public double informacionDivision(Columna columna) // split information
+        {
+            List<string> atributos = columna.getAtributos();
+            double divDeLaInformacion = 0.0;
+            double probb = 0.0;
+
+            Console.WriteLine("clase: "+columna.getClase());
+            for ( int i = 0; i < atributos.Count; i++ ) {
+                Console.WriteLine("infoDiv = ("+atributos[i]+")"+ columna.getCountAtributo(atributos[i])+" / "+columna.getTam());
+                probb = (double)((double)(columna.getCountAtributo(atributos[i])) / (double)(columna.getTam()));
+                Console.WriteLine("probb = "+probb);
+                divDeLaInformacion -= (double)(probb*(Math.Log(probb,2.0)));
+            }
+            Console.WriteLine("Div de la info = "+divDeLaInformacion);
+            return divDeLaInformacion;
+        }
+
+        public double ratioDeGanancia(Tabla tabla, Columna columna) //GainRatio
+        {
+            double Ganancia = (double)this.gananciaClase(columna, tabla.getColumnaAtributoSalida());
+            double DivInformacion = (double)this.informacionDivision(columna);
+
+            Console.WriteLine("El ratio de ganancia es = "+(double)((double)Ganancia/(double)DivInformacion));
+            return (double)((double)Ganancia / (double)DivInformacion);
+        }
+
+        public double[] ratioDeCadaClase(Tabla tabla)
+        {
+            double[] ratios = new double[tabla.getCountColumna()-1];
+
+            for (int i = 0; i < tabla.getCountColumna() - 1; i++)
+            {
+                Console.WriteLine("Para clase {0}", i);
+                Console.WriteLine("Ratio=" + this.ratioDeGanancia(tabla, tabla.getColumna(i)));
+                ratios[i] = ((double)this.ratioDeGanancia(tabla, tabla.getColumna(i)));
+            }
+            return ratios;
+        }
+
+        public int seleccionarAtributoMayorRatio(Tabla tabla) // retorna el indice de la columna
+        {
+            double[] ratios = this.ratioDeCadaClase(tabla);
+
+            return Array.IndexOf(ratios, ratios.Max());
         }
 
     }

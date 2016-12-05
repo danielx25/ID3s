@@ -46,7 +46,7 @@ namespace ID3.ID3s
             int indiceClase = seleccionarAtributoConMayorGanancia(tabla, atributos, raiz);
             Columna clase = tabla.getColumna(indiceClase);
             List<String> atributosClase = clase.getAtributos();
-            raiz = new Nodo(clase.getClase(), atributosClase);
+            raiz = new Nodo(clase.getClase(), atributosClase); // el nodo viene a ser la "clase" y los atributos las ramas
 
             Tabla nuevaTabla = null;
 

@@ -20,12 +20,39 @@ namespace ID3
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            Tabla tabla = tratamiento();
+            C45 c45 = new C45();
+            Tabla tablac45 = animal();
+            c45.cargarTablaC45(tablac45);
+            c45.iniciarC45();
+
+            //System.Console.WriteLine(tablac45);
+
+            //ID3_ id3 = new ID3_();
+            //Console.WriteLine("La ganancia de la clase es c45: " + id3.gananciaClase(tablac45.getColumna(4), tablac45.getColumnaAtributoSalida()));
+            //Console.WriteLine("RATIO DE CADA CLASE:");
+            //for (int i = 0; i < tablac45.getCountColumna() - 1; i++)
+            //{
+            //    Console.WriteLine("Para clase {0}", i);
+            //    Console.WriteLine("Ratio=" + c45.ratioDeGanancia(tablac45, tablac45.getColumna(i)));
+            //}
+
+            //////double[] ratios = c45.ratioDeCadaClase(tablac45);
+            //////Console.WriteLine("estos son los RATIOSSSSSS!!!-------------------");
+            //////for(int i = 0; i< ratios.Length; i++)
+            //////{
+            //////    Console.WriteLine("ratio: "+ratios[i]);
+            //////    Console.ReadKey();
+            //////}
+            //////int MayorRatio = c45.seleccionarAtributoMayorRatio(tablac45);
+            //////Console.WriteLine("el indice del atributo con mayor ratio es: "+MayorRatio);
+
+
+            Tabla tabla = animal();
             ID3_ id3 = new ID3_();
             id3.cargarTabla(tabla);
             id3.iniciarID3();
             //System.Console.WriteLine(tabla);
-            
+
 
             //System.Console.WriteLine(id3.siTodosEjemplosSonLosMismos(tabla));
             //System.Console.WriteLine(id3.elAtributoSAlidoMayorNumero(tabla));
@@ -36,6 +63,112 @@ namespace ID3
             System.Console.ReadKey();
 
         }
+
+
+        static Tabla creditos()
+        {
+
+            Columna riesgo = new Columna("riesgo", 14, false);
+            riesgo.addAtributo(new List<string> { "alto", "moderado", "bajo" });
+            riesgo[0] = "alto";
+            riesgo[1] = "alto";
+            riesgo[2] = "moderado";
+            riesgo[3] = "alto";
+            riesgo[4] = "bajo";
+            riesgo[5] = "bajo";
+            riesgo[6] = "alto";
+            riesgo[7] = "moderado";
+            riesgo[8] = "bajo";
+            riesgo[9] = "bajo";
+            riesgo[10] = "alto";
+            riesgo[11] = "moderado";
+            riesgo[12] = "bajo";
+            riesgo[13] = "alto";
+
+            Columna historia = new Columna("historia", 14, false);
+            historia.addAtributo(new List<string> { "mala", "desconocida", "buena" });
+            historia[0] = "mala";
+            historia[1] = "desconocida";
+            historia[2] = "desconocida";
+            historia[3] = "desconocida";
+            historia[4] = "desconocida";
+            historia[5] = "desconocida";
+            historia[6] = "mala";
+            historia[7] = "mala";
+            historia[8] = "buena";
+            historia[9] = "buena";
+            historia[10] = "buena";
+            historia[11] = "buena";
+            historia[12] = "buena";
+            historia[13] = "mala";
+
+            Columna deuda = new Columna("deuda", 14, false);
+            deuda.addAtributo(new List<string> { "alta", "baja" });
+
+            deuda[0] = "alta";
+            deuda[1] = "alta";
+            deuda[2] = "baja";
+            deuda[3] = "baja";
+            deuda[4] = "baja";
+            deuda[5] = "baja";
+            deuda[6] = "baja";
+            deuda[7] = "baja";
+            deuda[8] = "baja";
+            deuda[9] = "alta";
+            deuda[10] = "alta";
+            deuda[11] = "alta";
+            deuda[12] = "alta";
+            deuda[13] = "alta";
+
+            Columna avales = new Columna("avales", 14, false);
+            avales.addAtributo(new List<string> { "adecuados", "no" });
+
+            avales[0] = "no";
+            avales[1] = "no";
+            avales[2] = "no";
+            avales[3] = "no";
+            avales[4] = "no";
+            avales[5] = "adecuados";
+            avales[6] = "no";
+            avales[7] = "adecuados";
+            avales[8] = "no";
+            avales[9] = "adecuados";
+            avales[10] = "no";
+            avales[11] = "no";
+            avales[12] = "no";
+            avales[13] = "no";
+
+            Columna ingresos = new Columna("ingresos", 14, false);
+            ingresos.addAtributo(new List<string> { "0 a 2m", "2 a 5m", "mas de 5m" });
+
+            ingresos[0] = "0 a 2m";
+            ingresos[1] = "2 a 5m";
+            ingresos[2] = "2 a 5m";
+            ingresos[3] = "0 a 2m";
+            ingresos[4] = "mas de 5m";
+            ingresos[5] = "mas de 5m";
+            ingresos[6] = "0 a 2m";
+            ingresos[7] = "mas de 5m";
+            ingresos[8] = "mas de 5m";
+            ingresos[9] = "mas de 5m";
+            ingresos[10] = "0 a 2m";
+            ingresos[11] = "2 a 5m";
+            ingresos[12] = "mas de 5m";
+            ingresos[13] = "2 a 5m";
+
+
+            Tabla tabla = new Tabla();
+            tabla.agregarColumna(riesgo);
+            tabla.agregarColumna(historia);
+            tabla.agregarColumna(deuda);
+            tabla.agregarColumna(avales);
+            tabla.agregarColumna(ingresos);
+
+            return tabla;
+
+
+        }
+
 
         static Tabla tratamiento()
         {

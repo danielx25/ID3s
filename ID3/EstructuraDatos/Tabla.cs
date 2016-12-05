@@ -49,7 +49,7 @@ namespace ID3.EstructuraDatos
             return tabla[indice];
         }
 
-        public Columna getColumnaAtributoSalida()
+        public Columna getColumnaAtributoSalida() // clase
         {
             return tabla[tabla.Count - 1];
         }
