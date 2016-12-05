@@ -47,10 +47,10 @@ namespace ID3
             //////Console.WriteLine("el indice del atributo con mayor ratio es: "+MayorRatio);
 
 
-            Tabla tabla = animal();
-            ID3_ id3 = new ID3_();
-            id3.cargarTabla(tabla);
-            id3.iniciarID3();
+            //Tabla tabla = animal();
+            //ID3_ id3 = new ID3_();
+            //id3.cargarTabla(tabla);
+            //id3.iniciarID3();
             //System.Console.WriteLine(tabla);
 
 

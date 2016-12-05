@@ -51,12 +51,6 @@
   <ItemGroup>
     <Compile Include="Arbol\Arbol_.cs" />
     <Compile Include="Arbol\Nodo.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="ID3s\C45.cs" />
     <Compile Include="ID3s\ID3.cs" />
     <Compile Include="Program.cs" />
