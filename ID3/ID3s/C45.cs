@@ -12,7 +12,7 @@ namespace ID3.ID3s
     {
         private Tabla tabla = null;
         private Arbol_ arbolc45;
-
+        private double promedioGanancia = 0;
         //public Nodo algoritmoC45()
         //{
         //    return null;
@@ -22,11 +22,13 @@ namespace ID3.ID3s
         {
             this.tabla = tabla;
             arbolc45 = new Arbol_();
+            promedioGanancia = promedioGanancias(this.tabla);
         }
 
         public void iniciarC45()
         {
             arbolc45.setRaiz(algoritmoC45(tabla, tabla.getClases()));
+
             System.Console.WriteLine(arbolc45);
         }
 
@@ -71,16 +73,6 @@ namespace ID3.ID3s
             return raiz;
         }
 
-        public new int seleccionarAtributoConMayorGanancia(Tabla tabla, List<String> atributos, Nodo nodo)
-        {
-            return 0;
-        }
-
-        public double ratioGananciaClase(Columna clase, Columna atributoObjetivo)
-        {
-            return 0;
-        }
-
         public double informacionDivision(Columna columna) // split information
         {
             List<string> atributos = columna.getAtributos();
@@ -103,8 +95,16 @@ namespace ID3.ID3s
             double Ganancia = (double)this.gananciaClase(columna, tabla.getColumnaAtributoSalida());
             double DivInformacion = (double)this.informacionDivision(columna);
 
-            Console.WriteLine("El ratio de ganancia es = "+(double)((double)Ganancia/(double)DivInformacion));
-            return (double)((double)Ganancia / (double)DivInformacion);
+            Console.WriteLine("El ratio de ganancia es = " + (double)((double)Ganancia / (double)DivInformacion));
+
+            if(Ganancia >= promedioGanancia)
+            {
+                return Ganancia;
+            }
+            else
+            {
+                return (double)((double)Ganancia / (double)DivInformacion);
+            }
         }
 
         public double[] ratioDeCadaClase(Tabla tabla)
@@ -127,5 +127,15 @@ namespace ID3.ID3s
             return Array.IndexOf(ratios, ratios.Max());
         }
 
+        public double promedioGanancias(Tabla tabla)
+        {
+            double gananciaTotal = 0;
+            for(int i=0; i<tabla.getCountColumna(); i++)
+            {
+                gananciaTotal+= (double)this.gananciaClase(tabla.getColumna(i), tabla.getColumnaAtributoSalida());
+            }
+
+            return gananciaTotal/(tabla.getCountColumna()-1);
+        }
     }
 }

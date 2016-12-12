@@ -21,7 +21,7 @@ namespace ID3
             //Application.Run(new Form1());
 
             C45 c45 = new C45();
-            Tabla tablac45 = animal();
+            Tabla tablac45 = farmaco();
             c45.cargarTablaC45(tablac45);
             c45.iniciarC45();
 
@@ -47,10 +47,10 @@ namespace ID3
             //////Console.WriteLine("el indice del atributo con mayor ratio es: "+MayorRatio);
 
 
-            //Tabla tabla = animal();
-            //ID3_ id3 = new ID3_();
-            //id3.cargarTabla(tabla);
-            //id3.iniciarID3();
+            Tabla tabla = farmaco();
+            ID3_ id3 = new ID3_();
+            id3.cargarTabla(tabla);
+            id3.iniciarID3();
             //System.Console.WriteLine(tabla);
 
 
