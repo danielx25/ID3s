@@ -33,6 +33,18 @@ namespace ID3.EstructuraDatos
             }
         }
 
+        public int countCantidadClase(String valor)
+        {
+            Columna columna = tabla[tabla.Count - 1];
+            int cantidad = 0;
+            for(int i=0; i<columna.getTam(); i++)
+            {
+                if (valor.Equals(columna[i]))
+                    cantidad += 1;
+            }
+            return cantidad;
+        }
+
         public List<String> getClases()
         {
             return clases;
