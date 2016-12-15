@@ -1,5 +1,5 @@
-﻿using ID3.EstructuraDatos;
-using ID3.ID3s;
+﻿using ID3.ID3s.EstructuraDatos;
+using ID3.ID3s.ID3s;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +16,6 @@ namespace ID3
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
 
             C45 c45 = new C45();
             Tabla tablac45 = farmaco();
@@ -65,7 +62,11 @@ namespace ID3
             //System.Console.WriteLine(id3.seleccionarAtributoConMayorGanancia(tabla, new List<string> {"si", "no"}, tabla.getClases()));
             //System.Console.WriteLine(id3.entropiaAtributo(tabla.getColumna(7), tabla.getColumnaAtributoSalida(), "strong"));
             //System.Console.WriteLine(id3.gananciaClase(tabla.getColumna(0), tabla.getColumnaAtributoSalida()));
-            System.Console.ReadKey();
+            //System.Console.ReadKey();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
 
         }
 
@@ -279,9 +280,10 @@ namespace ID3
 
         }
 
-        static Tabla animal() {
+        static Tabla animal()
+        {
 
-            Columna peludo = new Columna("peludo",8,false);
+            Columna peludo = new Columna("peludo", 8, false);
             peludo.addAtributo(new List<string> { "si", "no" });
             peludo[0] = "si";
             peludo[1] = "no";
@@ -304,7 +306,7 @@ namespace ID3
             edad[7] = "viejo";
 
             Columna tamaño = new Columna("tamaño", 8, false);
-            tamaño.addAtributo(new List<string> { "grande","mediano","pequeño"});
+            tamaño.addAtributo(new List<string> { "grande", "mediano", "pequeño" });
 
             tamaño[0] = "grande";
             tamaño[1] = "grande";
@@ -316,7 +318,7 @@ namespace ID3
             tamaño[7] = "grande";
 
             Columna clase = new Columna("clase", 8, false);
-            clase.addAtributo(new List<string> { "leon", "no leon"});
+            clase.addAtributo(new List<string> { "leon", "no leon" });
 
             clase[0] = "leon";
             clase[1] = "no leon";
@@ -340,9 +342,9 @@ namespace ID3
 
         static Tabla farmaco()
         {
-            
+
             Columna presionArterial = new Columna("presion arterial", 14, false);
-            presionArterial.addAtributo(new List<String>{"baja", "media", "alta"});
+            presionArterial.addAtributo(new List<String> { "baja", "media", "alta" });
             presionArterial[0] = "alta";
             presionArterial[1] = "alta";
             presionArterial[2] = "baja";
@@ -431,7 +433,7 @@ namespace ID3
             administrarFarmacos[0] = "si";
             administrarFarmacos[1] = "si";
             administrarFarmacos[2] = "si";
-            
+
             administrarFarmacos[3] = "no";
             administrarFarmacos[4] = "no";
             administrarFarmacos[5] = "si";
@@ -444,8 +446,8 @@ namespace ID3
             administrarFarmacos[12] = "si";
             administrarFarmacos[13] = "si";
 
-     
-           
+
+
 
             Tabla tabla = new Tabla();
             tabla.agregarColumna(presionArterial);
@@ -560,7 +562,7 @@ namespace ID3
         static Tabla transporte()
         {
             Columna gender = new Columna("gender", 10, false);
-            gender.addAtributo(new List<String> { "male", "female"});
+            gender.addAtributo(new List<String> { "male", "female" });
             gender[0] = "male";
             gender[1] = "male";
             gender[2] = "female";
@@ -586,7 +588,7 @@ namespace ID3
             carOwnership[9] = "2";
 
             Columna travelCost = new Columna("travelCost", 10, false);
-            travelCost.addAtributo(new List<String> { "cheap", "standard", "expensive"});
+            travelCost.addAtributo(new List<String> { "cheap", "standard", "expensive" });
             travelCost[0] = "cheap";
             travelCost[1] = "cheap";
             travelCost[2] = "cheap";
@@ -635,4 +637,7 @@ namespace ID3
 
 
     }
+
 }
+    
+
