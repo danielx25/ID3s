@@ -14,7 +14,10 @@ namespace ID3.Arbol
         private List<String> atributos;
         private double division;
         private List<Nodo> punteros = new List<Nodo>();
-        private double ganancia = 0.0; 
+
+        private double radioGanacia = 0.0; 
+        private double ganancia = 0.0;
+        private double distancia = 0.0;
 
         public Nodo(String clase, List<String> atributos)
         {

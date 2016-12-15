@@ -23,7 +23,12 @@ namespace ID3
             C45 c45 = new C45();
             Tabla tablac45 = farmaco();
             c45.cargarTablaC45(tablac45);
-            c45.iniciarC45();
+            //c45.iniciarC45();
+
+            LopezMantaras diego = new LopezMantaras();
+            Tabla tablaLM = farmaco();
+            diego.cargarTablaLM(tablaLM);
+            diego.iniciarLM();
 
             //System.Console.WriteLine(tablac45);
 

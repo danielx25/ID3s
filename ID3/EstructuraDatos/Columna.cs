@@ -93,7 +93,7 @@ namespace ID3.EstructuraDatos
             return columna;
         }
 
-        public int getcountAtributos()
+        public int getCountAtributos()
         {
             return atributos.Count;
         }

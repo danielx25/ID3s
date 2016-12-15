@@ -130,8 +130,8 @@ namespace ID3.ID3s
             for(int i=0; i<atributos.Count; i++)
             {
                 entropiaAtributos[i] = entropiaAtributo(clase, atributoObjetivo, atributos[i]);
-                resultado += -((double)clase.getCountAtributo(atributos[i]) /clase.getTam())*entropiaAtributos[i];
-                System.Console.WriteLine(clase.getClase()+"|| "+atributos[i] + "===>"+((double)clase.getCountAtributo(atributos[i]) / clase.getTam()) * entropiaAtributos[i]);
+                resultado += -((double)clase.getFrecuenciaAtributo(atributos[i]) /clase.getTam())*entropiaAtributos[i];
+                System.Console.WriteLine(clase.getClase()+"|| "+atributos[i] + "===>"+((double)clase.getFrecuenciaAtributo(atributos[i]) / clase.getTam()) * entropiaAtributos[i]);
                 System.Console.WriteLine("ganancia: "+entropiaGeneral+" ---> "+resultado);
             }
             System.Console.WriteLine();

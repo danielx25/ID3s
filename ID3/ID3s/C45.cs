@@ -81,8 +81,8 @@ namespace ID3.ID3s
 
             Console.WriteLine("clase: "+columna.getClase());
             for ( int i = 0; i < atributos.Count; i++ ) {
-                Console.WriteLine("infoDiv = ("+atributos[i]+")"+ columna.getCountAtributo(atributos[i])+" / "+columna.getTam());
-                probb = (double)((double)(columna.getCountAtributo(atributos[i])) / (double)(columna.getTam()));
+                Console.WriteLine("infoDiv = ("+atributos[i]+")"+ columna.getFrecuenciaAtributo(atributos[i])+" / "+columna.getTam());
+                probb = (double)((double)(columna.getFrecuenciaAtributo(atributos[i])) / (double)(columna.getTam()));
                 Console.WriteLine("probb = "+probb);
                 divDeLaInformacion -= (double)(probb*(Math.Log(probb,2.0)));
             }
