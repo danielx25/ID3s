@@ -61,7 +61,7 @@ namespace ID3.EstructuraDatos
             return lista.Count;
         }
 
-        public int getCountAtributo(String atributo)
+        public int getFrecuenciaAtributo(String atributo)
         {
             int contador = 0;
             for(int i=0; i<lista.Count;i++)
@@ -91,6 +91,11 @@ namespace ID3.EstructuraDatos
             Columna columna = new Columna(this.clase, lista.Count, this.isContinuo);
             columna.setValores(lista, atributos);
             return columna;
+        }
+
+        public int getcountAtributos()
+        {
+            return atributos.Count;
         }
 
     }

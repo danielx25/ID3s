@@ -27,6 +27,25 @@ namespace ID3.ID3s
 
         public static double EntropiaInterseccionDeDosParticiones(Tabla tablaA, Tabla tablaB)
         {
+            Columna columnaA = tablaA.getColumnaAtributoSalida();
+            Columna columnaB = tablaB.getColumnaAtributoSalida();
+
+            int[] contadorAtributosA = new int[columnaA.getAtributos().Count];
+            int[] contadorAtributosB = new int[columnaB.getAtributos().Count];
+
+            List<string> atributosA = columnaA.getAtributos();
+            List<string> atributosB = columnaB.getAtributos();
+
+            for (int i=0; i<columnaA.getcountAtributos(); i++)
+            {
+                contadorAtributosA[i] = columnaA.getFrecuenciaAtributo(atributosA[i]);
+            }
+
+            for (int i = 0; i < columnaB.getcountAtributos(); i++)
+            {
+                contadorAtributosB[i] = columnaB.getFrecuenciaAtributo(atributosB[i]);
+            }
+
 
             for (int i = 0; i < 0; i++)
             {
