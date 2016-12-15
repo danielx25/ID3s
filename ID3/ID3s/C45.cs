@@ -2,6 +2,7 @@
 using ID3.EstructuraDatos;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,22 @@ namespace ID3.ID3s
 
         public void iniciarC45()
         {
-            arbolc45.setRaiz(algoritmoC45(tabla, tabla.getClases()));
+            //inicio cronometro
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Restart();
 
+            arbolc45.setRaiz(algoritmoC45(tabla, tabla.getClases()));
             System.Console.WriteLine(arbolc45);
+
+            // termino cronometro + resultados C4.5
+            stopwatch.Stop();
+            TimeSpan tiempoC45 = stopwatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            tiempoC45.Hours, tiempoC45.Minutes, tiempoC45.Seconds,
+            tiempoC45.Milliseconds / 10);
+            string elapsedMilisecons = String.Format(" {0} ", tiempoC45.Milliseconds);
+            Console.WriteLine("RunTime: " + elapsedTime);
+            Console.WriteLine("Runtime: " + elapsedMilisecons + " miliseconds");
         }
 
         public Nodo algoritmoC45(Tabla tabla, List<String> atributos)
@@ -79,14 +93,14 @@ namespace ID3.ID3s
             double divDeLaInformacion = 0.0;
             double probb = 0.0;
 
-            Console.WriteLine("clase: "+columna.getClase());
+            //Console.WriteLine("clase: "+columna.getClase());
             for ( int i = 0; i < atributos.Count; i++ ) {
-                Console.WriteLine("infoDiv = ("+atributos[i]+")"+ columna.getFrecuenciaAtributo(atributos[i])+" / "+columna.getTam());
+                //Console.WriteLine("infoDiv = ("+atributos[i]+")"+ columna.getFrecuenciaAtributo(atributos[i])+" / "+columna.getTam());
                 probb = (double)((double)(columna.getFrecuenciaAtributo(atributos[i])) / (double)(columna.getTam()));
-                Console.WriteLine("probb = "+probb);
+                //Console.WriteLine("probb = "+probb);
                 divDeLaInformacion -= (double)(probb*(Math.Log(probb,2.0)));
             }
-            Console.WriteLine("Div de la info = "+divDeLaInformacion);
+            //Console.WriteLine("Div de la info = "+divDeLaInformacion);
             return divDeLaInformacion;
         }
 
@@ -95,7 +109,7 @@ namespace ID3.ID3s
             double Ganancia = (double)this.gananciaClase(columna, tabla.getColumnaAtributoSalida());
             double DivInformacion = (double)this.informacionDivision(columna);
 
-            Console.WriteLine("El ratio de ganancia es = " + (double)((double)Ganancia / (double)DivInformacion));
+            //Console.WriteLine("El ratio de ganancia es = " + (double)((double)Ganancia / (double)DivInformacion));
 
             if(Ganancia >= promedioGanancia)
             {
@@ -113,8 +127,8 @@ namespace ID3.ID3s
 
             for (int i = 0; i < tabla.getCountColumna() - 1; i++)
             {
-                Console.WriteLine("Para clase {0}", i);
-                Console.WriteLine("Ratio=" + this.ratioDeGanancia(tabla, tabla.getColumna(i)));
+                //Console.WriteLine("Para clase {0}", i);
+                //Console.WriteLine("Ratio=" + this.ratioDeGanancia(tabla, tabla.getColumna(i)));
                 ratios[i] = ((double)this.ratioDeGanancia(tabla, tabla.getColumna(i)));
             }
             return ratios;

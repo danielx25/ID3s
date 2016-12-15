@@ -10,7 +10,7 @@ namespace ID3.Arbol
     {
         private Nodo raiz = null;
         private double tiempo = 0;
-        private double profundidadArbol = 0;
+        private int profundidadArbol = 0;
         private int numeroHojas = 0;
 
         public void setRaiz(Nodo nodo)
@@ -42,5 +42,46 @@ namespace ID3.Arbol
             }
 
         }
+
+        public double Tiempo
+        {
+            set
+            {
+                tiempo = value;
+            }
+
+            get
+            {
+                return tiempo;
+            }
+        }
+
+        public int ProfundidadArbol
+        {
+            set
+            {
+                profundidadArbol = value;
+            }
+
+            get
+            {
+                return profundidadArbol;
+            }
+        }
+
+        public int NumeroHojas
+        {
+            set
+            {
+                numeroHojas = value;
+            }
+
+            get
+            {
+                return numeroHojas;
+            }
+        }
+
+
     }
 }

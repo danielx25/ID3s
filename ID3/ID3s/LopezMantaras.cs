@@ -2,6 +2,7 @@
 using ID3.EstructuraDatos;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,24 @@ namespace ID3.ID3s
 
         public void iniciarLM()
         {
+            //inicio cronometro
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Restart();
+
             arbol.setRaiz(algoritmoLopezMataras(tabla, tabla.getClases()));
             System.Console.WriteLine(arbol);
             //Nodo s=algoritmoID3(this.tabla, tabla.getClases());
             //System.Console.WriteLine(s.getNombreClase());
+
+            // termino cronometro + resultados LM
+            stopwatch.Stop();
+            TimeSpan tiempoLM = stopwatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            tiempoLM.Hours, tiempoLM.Minutes, tiempoLM.Seconds,
+            tiempoLM.Milliseconds / 10);
+            string elapsedMilisecons = String.Format(" {0} ", tiempoLM.Milliseconds);
+            Console.WriteLine("RunTime: " + elapsedTime);
+            Console.WriteLine("Runtime: " + elapsedMilisecons + " miliseconds");
         }
         public static double EntropiaPorAtributoIJ()
         {
