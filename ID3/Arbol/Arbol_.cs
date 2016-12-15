@@ -9,6 +9,9 @@ namespace ID3.Arbol
     public class Arbol_
     {
         private Nodo raiz = null;
+        private double tiempo = 0;
+        private double profundidadArbol = 0;
+        private int numeroHojas = 0;
 
         public void setRaiz(Nodo nodo)
         {
