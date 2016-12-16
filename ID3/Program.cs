@@ -1,5 +1,6 @@
-﻿using ID3.ID3s.EstructuraDatos;
-using ID3.ID3s.ID3s;
+﻿
+using ID3.EstructuraDatos;
+using ID3.ID3s;
 using System;
 using System.Collections.Generic;
 using System.Linq;

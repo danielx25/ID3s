@@ -58,6 +58,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arbol\Arbol_.cs" />
+    <Compile Include="Arbol\Nodo.cs" />
+    <Compile Include="EstructuraDatos\Columna.cs" />
+    <Compile Include="EstructuraDatos\Tabla.cs" />
+    <Compile Include="ID3s\C45.cs" />
     <Compile Include="GUI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,7 +81,9 @@
     <Compile Include="GUI\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="ID3s\ID3.cs" />
     <Compile Include="Leer.cs" />
+    <Compile Include="ID3s\LopezMantaras.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Usuario.cs">
