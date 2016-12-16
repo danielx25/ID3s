@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{10BFF47C-6714-47CF-B439-781F21473893}</ProjectGuid>
+    <ProjectGuid>{E9338B0D-9B13-41E4-829E-24909C7B85EA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ID3</RootNamespace>
@@ -76,13 +76,6 @@
     <Compile Include="GUI\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="ID3s\Arbol\Arbol.cs" />
-    <Compile Include="ID3s\Arbol\Nodo.cs" />
-    <Compile Include="ID3s\EstructuraDatos\Columna.cs" />
-    <Compile Include="ID3s\EstructuraDatos\Tabla.cs" />
-    <Compile Include="ID3s\ID3s\C45.cs" />
-    <Compile Include="ID3s\ID3s\ID3.cs" />
-    <Compile Include="ID3s\ID3s\LopezMantaras.cs" />
     <Compile Include="Leer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
