@@ -1,4 +1,5 @@
-﻿using ID3.ID3s;
+﻿using ID3.GUI;
+using ID3.ID3s;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,13 +71,15 @@ namespace ID3
             button1.Location = new Point(89, 50);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)  //Arbol del c4.5
         {
             pictureBox1.Visible = false;
             button2.Visible = false;
             button5.Visible = false;
             button4.Visible = false;
             button1.Location = new Point(89, 50);
+
+           
         }
 
         private void Inicio_Load(object sender, EventArgs e)

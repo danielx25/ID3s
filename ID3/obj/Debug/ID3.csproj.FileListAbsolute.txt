@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\danielx\Desktop\ID3s\ID3\bin\Debug\ID3.exe.config
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.exe
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.pdb
@@ -14,3 +15,53 @@ C:\Users\danielx\Desktop\ID3s\ID3\bin\Debug\CircularProgressBar.dll
 C:\Users\danielx\Desktop\ID3s\ID3\bin\Debug\WinFormAnimation.dll
 C:\Users\danielx\Desktop\ID3s\ID3\bin\Debug\CircularProgressBar.xml
 C:\Users\danielx\Desktop\ID3s\ID3\bin\Debug\WinFormAnimation.xml
+=======
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\bin\Debug\ID3.exe.config
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\bin\Debug\ID3.exe
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\bin\Debug\ID3.pdb
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.csprojResolveAssemblyReference.cache
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.Form1.resources
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.Properties.Resources.resources
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.csproj.GenerateResource.Cache
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.exe
+c:\users\maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.pdb
+C:\Users\Maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.Inicio.resources
+C:\Users\Maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.Usuario.resources
+C:\Users\Maycol\documents\visual studio 2015\Projects\ID3\ID3\obj\Debug\ID3.GUI.herramientas.resources
+C:\Users\Maycol\documents\visual studio 2015\Projects\ID3\ID3\bin\Debug\CircularProgressBar.dll
+C:\Users\Maycol\documents\visual studio 2015\Projects\ID3\ID3\bin\Debug\WinFormAnimation.dll
+C:\Users\Maycol\documents\visual studio 2015\Projects\ID3\ID3\bin\Debug\CircularProgressBar.xml
+C:\Users\Maycol\documents\visual studio 2015\Projects\ID3\ID3\bin\Debug\WinFormAnimation.xml
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\bin\Debug\ID3.exe.config
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.exe
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.pdb
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\bin\Debug\ID3.exe
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\bin\Debug\ID3.pdb
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\bin\Debug\CircularProgressBar.dll
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\bin\Debug\WinFormAnimation.dll
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\bin\Debug\CircularProgressBar.xml
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\bin\Debug\WinFormAnimation.xml
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.csprojResolveAssemblyReference.cache
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.Form1.resources
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.GUI.herramientas.resources
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.Inicio.resources
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.Properties.Resources.resources
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.Usuario.resources
+C:\Users\Maycol\Documents\Visual Studio 2015\Projects\ID3s\ID3\obj\Debug\ID3.csproj.GenerateResource.Cache
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\bin\Debug\ID3.exe.config
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.exe
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.pdb
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\bin\Debug\ID3.exe
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\bin\Debug\ID3.pdb
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\bin\Debug\CircularProgressBar.dll
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\bin\Debug\WinFormAnimation.dll
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\bin\Debug\CircularProgressBar.xml
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\bin\Debug\WinFormAnimation.xml
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.csprojResolveAssemblyReference.cache
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.Form1.resources
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.GUI.herramientas.resources
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.Inicio.resources
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.Properties.Resources.resources
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.Usuario.resources
+C:\Users\danielx\Desktop\test\ID3s\ID3s\ID3\obj\Debug\ID3.csproj.GenerateResource.Cache
+>>>>>>> aqui-trabaja-el-maycol

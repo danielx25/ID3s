@@ -1,8 +1,10 @@
 ﻿
 using ID3.EstructuraDatos;
 using ID3.ID3s;
+
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,23 +13,83 @@ namespace ID3
 {
     static class Program
     {
+        public static Tabla leerCSV(string fileName)
+        {
+            var reader = new StreamReader(File.OpenRead(fileName));
+            List<List<string>> tabla = new List<List<string>>();
+            List<string> columna = null;
+            bool filaInicial = false;
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(';');
+                if(filaInicial == false)
+                {
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        columna = new List<string>();
+                        tabla.Add(columna);
+                    }
+                    
+                    filaInicial = true;
+                }
+
+                for(int i=0; i<values.Length; i++)
+                {
+                    tabla[i].Add(values[i]);
+                }
+            }
+
+            /*
+            for (int i=0; i<tabla[0].Count; i++)
+            {
+                for(int j=0; j<tabla.Count; j++)
+                {
+                    System.Console.Write(tabla[j][i]+"- ");
+                }
+                System.Console.WriteLine();
+            }*/
+            Tabla tablaID3s = new Tabla();
+            Columna columna1 = null;
+            for (int i = 0; i < tabla.Count; i++)
+            {
+                for (int j = 0; j < tabla[i].Count; j++)
+                {
+                    if(j == 0)
+                    {
+                        columna1 = new Columna(tabla[i][j], tabla[i].Count-1, false);
+                    }
+                    else
+                    columna1[j - 1] = tabla[i][j];
+                }
+                tabla[i].RemoveAt(0);
+                columna1.addAtributo(tabla[i].Distinct().ToList());
+                tablaID3s.agregarColumna(columna1);
+            }
+
+            return tablaID3s;
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            
+            //herramientas he = new herramientas();
+            //C45 c45 = new C45();
+            //he.churn();
+            //c45.cargarTablaC45(he.churn());
+            //c45.iniciarC45();
 
+            /*
             C45 c45 = new C45();
-            Tabla tablac45 = farmaco();
-            c45.cargarTablaC45(tablac45);
-
-
+            c45.cargarTablaC45(leerCSV("churn.csv"));
             c45.iniciarC45();
-
+            */
             LopezMantaras diego = new LopezMantaras();
-            Tabla tablaLM = farmaco();
-            diego.cargarTablaLM(tablaLM);
+            //Tabla tablaLM = farmaco();
+            diego.cargarTablaLM(leerCSV("churn.csv"));
             diego.iniciarLM();
 
             //System.Console.WriteLine(tablac45);
@@ -52,10 +114,12 @@ namespace ID3
             //////Console.WriteLine("el indice del atributo con mayor ratio es: "+MayorRatio);
 
 
-            Tabla tabla = farmaco();
+            //Tabla tabla = farmaco();
+            /*
             ID3_ id3 = new ID3_();
-            id3.cargarTabla(tabla);
+            id3.cargarTabla(leerCSV("churn.csv"));
             id3.iniciarID3();
+            */
             //System.Console.WriteLine(tabla);
 
 
@@ -94,7 +158,7 @@ namespace ID3
             riesgo[12] = "bajo";
             riesgo[13] = "alto";
 
-            Columna historia = new Columna("historia", 14, false);
+            Columna historia = new Columna("historia", 14, false);  
             historia.addAtributo(new List<string> { "mala", "desconocida", "buena" });
             historia[0] = "mala";
             historia[1] = "desconocida";
@@ -346,6 +410,8 @@ namespace ID3
         static Tabla farmaco()
         {
 
+           
+
             Columna presionArterial = new Columna("presion arterial", 14, false);
             presionArterial.addAtributo(new List<String> { "baja", "media", "alta" });
             presionArterial[0] = "alta";
@@ -363,7 +429,7 @@ namespace ID3
             presionArterial[12] = "baja";
             presionArterial[13] = "baja";
 
-            Columna azucarsAngre = new Columna("azucar sangre", 14, false);
+            Columna azucarsAngre = new Columna("azucar sangre", 14, false);  //azucarsAngre
             azucarsAngre.addAtributo(new List<String> { "bajo", "alto" });
             azucarsAngre[0] = "alto";
             azucarsAngre[1] = "alto";
@@ -380,7 +446,7 @@ namespace ID3
             azucarsAngre[12] = "alto";
             azucarsAngre[13] = "alto";
 
-            Columna indiceColesterol = new Columna("indice colesterol", 14, false);
+            Columna indiceColesterol = new Columna("indice colesterol", 14, false);  //indiceColesterol
             indiceColesterol.addAtributo(new List<String> { "bajo", "alto" });
             indiceColesterol[0] = "alto";
             indiceColesterol[1] = "alto";
@@ -397,7 +463,7 @@ namespace ID3
             indiceColesterol[12] = "alto";
             indiceColesterol[13] = "bajo";
 
-            Columna alergiaAntibiotico = new Columna("alergia antibiotico", 14, false);
+            Columna alergiaAntibiotico = new Columna("alergia antibiotico", 14, false);   //alergiaAntibiotico
             alergiaAntibiotico.addAtributo(new List<String> { "si", "no" });
             alergiaAntibiotico[0] = "no";
             alergiaAntibiotico[1] = "si";
@@ -414,7 +480,7 @@ namespace ID3
             alergiaAntibiotico[12] = "si";
             alergiaAntibiotico[13] = "no";
 
-            Columna otrasAlergias = new Columna("otras alergias", 14, false);
+            Columna otrasAlergias = new Columna("otras alergias", 14, false);   //otrasAlergias
             otrasAlergias.addAtributo(new List<String> { "si", "no" });
             otrasAlergias[0] = "no";
             otrasAlergias[1] = "no";
@@ -431,7 +497,7 @@ namespace ID3
             otrasAlergias[12] = "si";
             otrasAlergias[13] = "no";
 
-            Columna administrarFarmacos = new Columna("administrar farmacos", 14, false);
+            Columna administrarFarmacos = new Columna("administrar farmacos", 14, false); 
             administrarFarmacos.addAtributo(new List<String> { "si", "no" });
             administrarFarmacos[0] = "si";
             administrarFarmacos[1] = "si";
