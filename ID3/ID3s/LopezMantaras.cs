@@ -28,6 +28,7 @@ namespace ID3.ID3s
 
             arbol.setRaiz(algoritmoLopezMataras(tabla, tabla.getClases()));
             System.Console.WriteLine(arbol);
+            arbol.guardarArbol("arbol.txt");
             //Nodo s=algoritmoID3(this.tabla, tabla.getClases());
             //System.Console.WriteLine(s.getNombreClase());
 

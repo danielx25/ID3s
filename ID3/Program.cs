@@ -72,11 +72,11 @@ namespace ID3
             //c45.cargarTablaC45(he.churn());
             //c45.iniciarC45();
 
-            /*
+            
             C45 c45 = new C45();
             c45.cargarTablaC45(leerCSV("churn.csv"));
             c45.iniciarC45();
-            
+            /*
             LopezMantaras diego = new LopezMantaras();
             //Tabla tablaLM = farmaco();
             diego.cargarTablaLM(leerCSV("churn.csv"));
@@ -105,11 +105,11 @@ namespace ID3
 
 
             //Tabla tabla = farmaco();
-            
+            /*
             ID3_ id3 = new ID3_();
             id3.cargarTabla(farmaco());
             id3.iniciarID3();
-            
+            */
             //System.Console.WriteLine(tabla);
 
 

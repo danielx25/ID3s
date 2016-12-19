@@ -114,8 +114,7 @@ namespace ID3.Arbol
 
         public void guardarArbol(string fileName)
         {
-            if (!File.Exists(fileName))
-            {
+            
                 TextWriter tw = new StreamWriter(fileName, true);
                 List<string> lista = new List<string>();
                 mostrarArbol(raiz, "", lista);
@@ -125,7 +124,7 @@ namespace ID3.Arbol
                 }
                 
                 tw.Close();
-            }
+            
         }
 
 

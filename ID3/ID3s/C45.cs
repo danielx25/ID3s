@@ -34,6 +34,7 @@ namespace ID3.ID3s
 
             arbolc45.setRaiz(algoritmoC45(tabla, tabla.getClases()));
             System.Console.WriteLine(arbolc45);
+            arbolc45.guardarArbol("arbol.txt");
 
             // termino cronometro + resultados C4.5
             stopwatch.Stop();
