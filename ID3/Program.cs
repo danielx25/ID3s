@@ -39,16 +39,6 @@ namespace ID3
                     tabla[i].Add(values[i]);
                 }
             }
-
-            /*
-            for (int i=0; i<tabla[0].Count; i++)
-            {
-                for(int j=0; j<tabla.Count; j++)
-                {
-                    System.Console.Write(tabla[j][i]+"- ");
-                }
-                System.Console.WriteLine();
-            }*/
             Tabla tablaID3s = new Tabla();
             Columna columna1 = null;
             for (int i = 0; i < tabla.Count; i++)
@@ -75,7 +65,7 @@ namespace ID3
         [STAThread]
         static void Main()
         {
-            
+
             //herramientas he = new herramientas();
             //C45 c45 = new C45();
             //he.churn();
@@ -86,12 +76,12 @@ namespace ID3
             C45 c45 = new C45();
             c45.cargarTablaC45(leerCSV("churn.csv"));
             c45.iniciarC45();
-            */
+            
             LopezMantaras diego = new LopezMantaras();
             //Tabla tablaLM = farmaco();
             diego.cargarTablaLM(leerCSV("churn.csv"));
             diego.iniciarLM();
-
+            */
             //System.Console.WriteLine(tablac45);
 
             //ID3_ id3 = new ID3_();
@@ -115,11 +105,11 @@ namespace ID3
 
 
             //Tabla tabla = farmaco();
-            /*
+            
             ID3_ id3 = new ID3_();
-            id3.cargarTabla(leerCSV("churn.csv"));
+            id3.cargarTabla(farmaco());
             id3.iniciarID3();
-            */
+            
             //System.Console.WriteLine(tabla);
 
 

@@ -62,16 +62,63 @@ namespace ID3.GUI
             herramientas he = new herramientas();
             C45 c45 = new C45();
             he.churn();
-            c45.cargarTablaC45(he.churn());
+            c45.cargarTablaC45(leerCSV(ARCHIVO));
             c45.iniciarC45();
 
 
 
         }
 
+        public Tabla leerCSV(string fileName)
+        {
+            var reader = new StreamReader(File.OpenRead(fileName));
+            List<List<string>> tabla = new List<List<string>>();
+            List<string> columna = null;
+            bool filaInicial = false;
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(';');
+                if (filaInicial == false)
+                {
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        columna = new List<string>();
+                        tabla.Add(columna);
+                    }
+
+                    filaInicial = true;
+                }
+
+                for (int i = 0; i < values.Length; i++)
+                {
+                    tabla[i].Add(values[i]);
+                }
+            }
+            Tabla tablaID3s = new Tabla();
+            Columna columna1 = null;
+            for (int i = 0; i < tabla.Count; i++)
+            {
+                for (int j = 0; j < tabla[i].Count; j++)
+                {
+                    if (j == 0)
+                    {
+                        columna1 = new Columna(tabla[i][j], tabla[i].Count - 1, false);
+                    }
+                    else
+                        columna1[j - 1] = tabla[i][j];
+                }
+                tabla[i].RemoveAt(0);
+                columna1.addAtributo(tabla[i].Distinct().ToList());
+                tablaID3s.agregarColumna(columna1);
+            }
+
+            return tablaID3s;
+        }
+
         //***************************************************************************************************************************
 
-        
+
 
         //******************************************************************************************************************************
 
