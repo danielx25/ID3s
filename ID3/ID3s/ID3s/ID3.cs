@@ -36,7 +36,7 @@ namespace ID3.ID3s.ID3s
                 raiz = new Nodo(aSalida);
                 return raiz;
             }
-            if (atributos.Count == 0)//si no existe ningun atributo
+            if (atributos.Count == 1)//si no existe ningun atributo
             {
                 //elAtributoSAlidoMayorNumero()
                 //el mayor numero de valor de salida
@@ -115,6 +115,7 @@ namespace ID3.ID3s.ID3s
                 ganaciasClases[i] = gananciaClase(tabla.getColumna(i), tabla.getColumnaAtributoSalida());
                 System.Console.WriteLine("ganancia: " + ganaciasClases[i]);
             }
+            System.Console.WriteLine("ERROR: G: " + tabla.getCountColumna());
             int indice = Array.IndexOf(ganaciasClases, ganaciasClases.Max());
             //nodo.setGanancia(ganaciasClases.Max());
             return indice;
@@ -196,9 +197,12 @@ namespace ID3.ID3s.ID3s
 
                 double division = (contadorAtributos[i] / (double)total);
                 if (division > 0)
+                {
                     resultado += (-division) * (Math.Log(division) / Math.Log(2.0));
-                System.Console.WriteLine("resultado: " + resultado);
-                System.Console.WriteLine("              ====> " + division + " [" + contadorAtributos[i] + "]/" + " [" + total + "]");
+                    System.Console.WriteLine("resultado: " + resultado);
+                    System.Console.WriteLine("              ====> " + division + " [" + contadorAtributos[i] + "]/" + " [" + total + "]");
+                }
+                    
             }
             return resultado;
         }

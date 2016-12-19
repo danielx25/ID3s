@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using ID3.ID3s.EstructuraDatos;
+using ID3.ID3s.ID3s;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,23 +56,15 @@ namespace ID3.GUI
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            int Total = int.Parse(dataGridView.ColumnCount.ToString());
-            ArrayList nose = new ArrayList();
 
-            /*cargarArchivo();
-            Colum(0);
-            Colum(1);
-            Colum(2);*/
-            openFileDialog1.ShowDialog();
-            string Direcion = openFileDialog1.FileName;
+            cargarArchivo();
+                      
+            herramientas he = new herramientas();
+            C45 c45 = new C45();
+            he.churn();
+            c45.cargarTablaC45(he.churn());
+            c45.iniciarC45();
 
-            Colum();
-
-
-            for (int i=0; i<6;i++) { //falta poner la cantidad de columnas
-
-                archivoCsv(i, Direcion);
-            }
 
 
         }
@@ -114,10 +108,10 @@ namespace ID3.GUI
         }  //finnn
         ///************************************************************************************************************************************
 
-        public ArrayList Colum() {
+        public ArrayList Colum(int col) {
 
             ArrayList columna = new ArrayList();
-            //Columna cl = new Columna();
+            int c = 0;
             
             int Total = int.Parse(dataGridView.ColumnCount.ToString());
 
@@ -125,23 +119,29 @@ namespace ID3.GUI
                     for (int i = 0; i < dataGridView.RowCount; i++)
                     {
 
-                        //columna.Add(dataGridView.Rows[i].Cells[r].Value.ToString());
-                        // columna.Add(dataGridView.Rows[i].Cells[col].Value.ToString());
-
-                        columna.Add(dataGridView.Rows[i].Cells[0].Value.ToString());
-                        Console.WriteLine(columna[i]);
+                       
+                        columna.Add(dataGridView.Rows[i].Cells[col].Value.ToString());
+                       
 
                     }
-
-                    Console.WriteLine("\n");
-            
-                    
+                                       
             return columna;
 
         }
+
+        //***************************************************************************************************************************************
+
+        public int retornaFilas() {
+
+            int Total = int.Parse(dataGridView.Rows.Count.ToString());
+
+            return Total;
+        }
+
+
         //***********************************************************************************************************************
 
-        public ArrayList archivoCsv(int col, string hola){ // esta wea si sirve, pero ahi nomas 
+        public ArrayList archivoCsv(int col, string hola){ // esta wea si sirve, pero ahi nomas  ,al final no la uso
 
            // openFileDialog1.ShowDialog();
             ArrayList Columna = new ArrayList();
@@ -157,45 +157,109 @@ namespace ID3.GUI
             }
 
             int i = 0;
-            // Console.WriteLine("Column 1:");
-            foreach (var element in Columna)
-
-                Console.WriteLine(i++ +" "+ element);
-               
-            Console.WriteLine("\n");
-
+           
             return Columna;
                         
         }
 
         //***************************************************************************************************************************
 
-        public   DataTable leerCsv() {   // esta wea no sirve 
+        public Tabla churn() {
 
-            openFileDialog1.ShowDialog();
+            int Filas = retornaFilas();
 
-            StreamReader sr = new StreamReader(openFileDialog1.FileName);
-            string[] headers = sr.ReadLine().Split(',');
-            DataTable dt = new DataTable();
-            foreach (string header in headers)
-            {
-                dt.Columns.Add(header);
+            Columna estado_cliente = new Columna("estado_cliente", Filas, false);
+            estado_cliente.addAtributo(new List<string> { "vigente", "inhavilitado","renuncia" });
+            ArrayList columna1 = new ArrayList();
+            columna1 = Colum(0);
+            for (int i=0; i< Filas;i++) {
+
+                estado_cliente[i] = columna1[i];
             }
-            while (!sr.EndOfStream)
+
+
+            Columna nombre_segmento = new Columna("nombre_ segmento", Filas, false);
+            nombre_segmento.addAtributo(new List<string> { "empresa", "persona" });
+            ArrayList columna2 = new ArrayList();
+            columna2 = Colum(1);
+            for (int i = 0; i < Filas; i++)
             {
-                string[] rows = Regex.Split(sr.ReadLine(), ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                DataRow dr = dt.NewRow();
-                for (int i = 0; i < headers.Length; i++)
-                {
-                    dr[i] = rows[i];
-                }
-                dt.Rows.Add(dr);
+
+                nombre_segmento[i] = columna2[i];
             }
-            return dt;
+
+            Columna nombre_plan = new Columna("nombre_plan",Filas,false);
+            nombre_plan.addAtributo(new List<string> { "linea comercial", "linea residencial","linea residencial desagregada","fast line" , "liena pabx analoga"});
+            ArrayList columna3 = new ArrayList();
+            columna3 = Colum(2);
+            for (int i = 0; i < Filas; i++)
+            {
+
+                nombre_plan[i] = columna3[i];
+            }
+
+            Columna nombre_zonageo = new Columna("nombre_zonageo", Filas, false);
+            nombre_zonageo.addAtributo(new List<string> { "santiago", "valparaiso","consepcion","valdivia", "pta arenas", "antofagasta", "iquique", "osorno", "coyahique", " talca", " la serena " , " temuco", " puerto mont"  });
+            ArrayList columna4 = new ArrayList();
+            columna4 = Colum(3);
+            for (int i = 0; i < Filas; i++)
+            {
+
+                nombre_zonageo[i] = columna4[i];
+            }
+
+        
+            Columna nombre_estadofianl = new Columna("nombre_estadofianl",Filas,false);
+            nombre_estadofianl.addAtributo(new List<string> { "vigente", "inhabilitado", "renunciado" });
+            ArrayList columna5 = new ArrayList();
+            columna5 = Colum(4);
+            for (int i = 0; i < Filas; i++)
+            {
+
+                nombre_estadofianl[i] = columna5[i];
+            }
+       
+            Columna resolucion_reclamo = new Columna("resolucion_reclamo", Filas, false);
+            resolucion_reclamo.addAtributo(new List<string> { "aprobado", "sin clasificar" , "rechazado "});
+            ArrayList columna6 = new ArrayList();
+            columna6 = Colum(5);
+            for (int i = 0; i < Filas; i++)
+            {
+
+                resolucion_reclamo[i] = columna6[i];
+            }
+
+            Columna reclamo_tipo = new Columna("tipo_ reclamo", Filas, false);
+            reclamo_tipo.addAtributo(new List<string> { "solicitud de servicio", "reclamo de facturacion", "solicitud de bloqueo", " solicitudes comerciales", " solicitudes de servicio", " reclamos comerciales ", " otras solicitudes" });
+            ArrayList columna7 = new ArrayList();
+            columna7 = Colum(6);
+            for (int i = 0; i < Filas; i++)
+            {
+
+                reclamo_tipo[i] = columna7[i];
+            }
+
+            //int y = 0;
+            //for (int r=0; r<Filas; r++) {
+
+            //    Console.WriteLine(y++ +" " +estado_cliente[r]);
+            //}
+
+            
+            Tabla tabla = new Tabla();
+            tabla.agregarColumna(estado_cliente);
+            tabla.agregarColumna(nombre_segmento);
+            tabla.agregarColumna(nombre_plan);
+            tabla.agregarColumna(nombre_zonageo);
+            tabla.agregarColumna(nombre_estadofianl);
+            tabla.agregarColumna(resolucion_reclamo);
+            tabla.agregarColumna(reclamo_tipo);
+
+            return tabla;
+
         }
 
-        //************************************************************************************************************************************
-
+        
     }
 
 } 

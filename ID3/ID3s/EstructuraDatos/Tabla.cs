@@ -105,6 +105,17 @@ namespace ID3.ID3s.EstructuraDatos
                 }
                 System.Console.WriteLine();
             }
+            for (int j = 0; j < this.getCountColumna(); j++)
+            {
+                System.Console.WriteLine("clase: " + tabla[j].getClase());
+                List<string> atributos = tabla[j].getAtributos();
+                for(int i=0; i<atributos.Count; i++)
+                {
+                    System.Console.Write(atributos[i] + " - ");
+                }
+                System.Console.WriteLine();
+
+            }
             return cadena;
         }
 
