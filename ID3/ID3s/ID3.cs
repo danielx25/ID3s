@@ -51,7 +51,7 @@ namespace ID3.ID3s
                 raiz = new Nodo(aSalida);
                 return raiz;
             }
-            if (atributos.Count == 0)//si no existe ningun atributo
+            if (atributos.Count == 1)//si no existe ningun atributo
             {
                 //elAtributoSAlidoMayorNumero()
                 //el mayor numero de valor de salida
