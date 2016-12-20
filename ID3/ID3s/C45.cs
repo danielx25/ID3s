@@ -11,8 +11,6 @@ namespace ID3.ID3s
 {
     class C45: ID3_
     {
-        private Tabla tabla = null;
-        private Arbol_ arbolc45;
         private double promedioGanancia = 0;
         //public Nodo algoritmoC45()
         //{
@@ -22,7 +20,7 @@ namespace ID3.ID3s
         public void cargarTablaC45(Tabla tabla)
         {
             this.tabla = tabla;
-            arbolc45 = new Arbol_();
+            arbol = new Arbol_("C45");
             promedioGanancia = promedioGanancias(this.tabla);
         }
 
@@ -32,9 +30,9 @@ namespace ID3.ID3s
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Restart();
 
-            arbolc45.setRaiz(algoritmoC45(tabla, tabla.getClases()));
-            System.Console.WriteLine(arbolc45);
-            arbolc45.guardarArbol("arbol.txt");
+            arbol.setRaiz(algoritmoC45(tabla, tabla.getClases()));
+            System.Console.WriteLine(arbol);
+            arbol.guardarArbol("arbol.txt");
 
             // termino cronometro + resultados C4.5
             stopwatch.Stop();
@@ -45,6 +43,7 @@ namespace ID3.ID3s
             string elapsedMilisecons = String.Format(" {0} ", tiempoC45.Milliseconds);
             Console.WriteLine("RunTime: " + elapsedTime);
             Console.WriteLine("Runtime: " + elapsedMilisecons + " miliseconds");
+            arbol.Tiempo = tiempoC45.Milliseconds;
         }
 
         public Nodo algoritmoC45(Tabla tabla, List<String> atributos)

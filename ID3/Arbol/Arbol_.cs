@@ -7,16 +7,32 @@ using System.Threading.Tasks;
 
 namespace ID3.Arbol
 {
+    [Serializable]
     public class Arbol_
     {
+        private string nombreAlgortimo = "ID3s";
         private Nodo raiz = null;
         private double tiempo = 0;
         private int profundidadArbol = 0;
         private int numeroHojas = 0;
+        private int numeroNodos = 0;
+
+        public Arbol_(string nombreAlgoritmo1)
+        {
+            this.nombreAlgortimo = nombreAlgoritmo1;
+        }
 
         public void setRaiz(Nodo nodo)
         {
             raiz = nodo;
+        }
+
+        public string NombreAlgoritmo
+        {
+            get
+            {
+                return nombreAlgortimo;
+            }
         }
 
         public void agregarNodo()
@@ -50,6 +66,36 @@ namespace ID3.Arbol
             }
 
         }
+        public void analisisArbol()
+        {
+            numeroHojas = 0;
+            numeroNodos = 0;
+            analisisArbol(raiz, 0);
+        }
+        private void analisisArbol(Nodo nodo, int nivel)
+        {
+            numeroNodos += 1;
+            nivel += 1;
+            if (nodo.getEsHoja() == false)
+                for (int i = 0; i < nodo.getCountPuntero(); i++)
+                {
+                    analisisArbol((Nodo)nodo[i], nivel);
+                }
+            else
+            {
+                if (profundidadArbol < nivel)
+                    profundidadArbol = nivel;
+                numeroHojas += 1;
+            }
+        }
+
+        public int NumeroNodos
+        {
+            get
+            {
+                return numeroNodos;
+            }
+        }
 
         public void produccionReglas(Nodo nodo,  List<string> lista)
         {
@@ -70,6 +116,13 @@ namespace ID3.Arbol
             else
             {
 
+            }
+        }
+        public Nodo Raiz
+        {
+            get
+            {
+                return raiz;
             }
         }
 
