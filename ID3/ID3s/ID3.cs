@@ -49,6 +49,7 @@ namespace ID3.ID3s
             string elapsedMilisecons = String.Format(" {0} ",tiempoID3.Milliseconds);
             Console.WriteLine("RunTime: " + elapsedTime);
             Console.WriteLine("Runtime: " + elapsedMilisecons + " miliseconds");
+            arbol.Tiempo = tiempoID3.Milliseconds;
         }
         
         public Nodo algoritmoID3(Tabla tabla, List<String> atributos)

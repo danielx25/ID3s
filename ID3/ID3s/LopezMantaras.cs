@@ -39,6 +39,7 @@ namespace ID3.ID3s
             string elapsedMilisecons = String.Format(" {0} ", tiempoLM.Milliseconds);
             Console.WriteLine("RunTime: " + elapsedTime);
             Console.WriteLine("Runtime: " + elapsedMilisecons + " miliseconds");
+            arbol.Tiempo = tiempoLM.Milliseconds;
         }
         public static double EntropiaPorAtributoIJ()
         {
