@@ -1,5 +1,7 @@
 ﻿
+using ID3.Arbol;
 using ID3.EstructuraDatos;
+using ID3.GUI;
 using ID3.ID3s;
 
 using System;
@@ -72,11 +74,11 @@ namespace ID3
             //c45.cargarTablaC45(he.churn());
             //c45.iniciarC45();
 
-            
+            /*
             C45 c45 = new C45();
             c45.cargarTablaC45(leerCSV("churn.csv"));
             c45.iniciarC45();
-            /*
+            
             LopezMantaras diego = new LopezMantaras();
             //Tabla tablaLM = farmaco();
             diego.cargarTablaLM(leerCSV("churn.csv"));
@@ -120,6 +122,7 @@ namespace ID3
             //System.Console.WriteLine(id3.entropiaAtributo(tabla.getColumna(7), tabla.getColumnaAtributoSalida(), "strong"));
             //System.Console.WriteLine(id3.gananciaClase(tabla.getColumna(0), tabla.getColumnaAtributoSalida()));
             //System.Console.ReadKey();
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

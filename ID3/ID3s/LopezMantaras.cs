@@ -11,13 +11,11 @@ namespace ID3.ID3s
 {
     class LopezMantaras :ID3_
     {
-        private Tabla tabla = null;
-        private Arbol_ arbol;
 
         public void cargarTablaLM(Tabla tabla)
         {
             this.tabla = tabla;
-            arbol = new Arbol_();
+            arbol = new Arbol_("Lopez de Mantara");
         }
 
         public void iniciarLM()
@@ -41,6 +39,7 @@ namespace ID3.ID3s
             string elapsedMilisecons = String.Format(" {0} ", tiempoLM.Milliseconds);
             Console.WriteLine("RunTime: " + elapsedTime);
             Console.WriteLine("Runtime: " + elapsedMilisecons + " miliseconds");
+            arbol.Tiempo = tiempoLM.Milliseconds;
         }
         public static double EntropiaPorAtributoIJ()
         {

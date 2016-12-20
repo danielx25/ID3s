@@ -1,4 +1,5 @@
-﻿using ID3.EstructuraDatos;
+﻿using ID3.Arbol;
+using ID3.EstructuraDatos;
 using ID3.ID3s;
 using Microsoft.VisualBasic.FileIO;
 using System;
@@ -61,10 +62,24 @@ namespace ID3.GUI
                       
             herramientas he = new herramientas();
             C45 c45 = new C45();
-            he.churn();
             c45.cargarTablaC45(leerCSV(ARCHIVO));
             c45.iniciarC45();
+            c45.Arbol.analisisArbol();
 
+            LopezMantaras diego = new LopezMantaras();
+            diego.cargarTablaLM(leerCSV(ARCHIVO));
+            diego.iniciarLM();
+            diego.Arbol.analisisArbol();
+
+            ID3_ id3 = new ID3_();
+            id3.cargarTabla(leerCSV(ARCHIVO));
+            id3.iniciarID3();
+            id3.Arbol.analisisArbol();
+
+            comparacion comparacionA = new comparacion();
+            
+            comparacionA.agregarArbol(new Arbol_[] {id3.Arbol, c45.Arbol, diego.Arbol});
+            comparacionA.Show();
 
 
         }

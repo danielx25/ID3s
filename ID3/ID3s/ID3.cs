@@ -11,13 +11,22 @@ namespace ID3.ID3s
 {
     public class ID3_
     {
-        private Tabla tabla = null;
-        private Arbol_ arbol;
+        protected Tabla tabla = null;
+        protected Arbol_ arbol;
         public void cargarTabla(Tabla tabla)
         {
             this.tabla = tabla;
-            arbol = new Arbol_();
+            arbol = new Arbol_("ID3");
         }
+
+        public Arbol_ Arbol
+        {
+            get
+            {
+                return arbol;
+            }
+        }
+        
 
         public void iniciarID3()
         {
@@ -40,6 +49,7 @@ namespace ID3.ID3s
             string elapsedMilisecons = String.Format(" {0} ",tiempoID3.Milliseconds);
             Console.WriteLine("RunTime: " + elapsedTime);
             Console.WriteLine("Runtime: " + elapsedMilisecons + " miliseconds");
+            arbol.Tiempo = tiempoID3.Milliseconds;
         }
         
         public Nodo algoritmoID3(Tabla tabla, List<String> atributos)

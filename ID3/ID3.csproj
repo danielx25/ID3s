@@ -63,8 +63,16 @@
   <ItemGroup>
     <Compile Include="Arbol\Arbol_.cs" />
     <Compile Include="Arbol\Nodo.cs" />
+    <Compile Include="Comparacion\Comparacion.cs" />
     <Compile Include="EstructuraDatos\Columna.cs" />
     <Compile Include="EstructuraDatos\Tabla.cs" />
+    <Compile Include="Ficheros\Archivo.cs" />
+    <Compile Include="GUI\comparacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\comparacion.Designer.cs">
+      <DependentUpon>comparacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ID3s\C45.cs" />
     <Compile Include="GUI\Form1.cs">
       <SubType>Form</SubType>
@@ -95,6 +103,9 @@
     <Compile Include="GUI\Usuario.Designer.cs">
       <DependentUpon>Usuario.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\comparacion.resx">
+      <DependentUpon>comparacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

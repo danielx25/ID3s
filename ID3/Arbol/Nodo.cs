@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ID3.Arbol
 {
+    [Serializable]
     public class Nodo
     {
         private bool esHoja = false;
