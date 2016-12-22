@@ -1,6 +1,6 @@
 ﻿namespace ID3.GUI
 {
-    partial class comparacion
+    partial class Predicion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,35 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tablaComparacion = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaComparacion)).BeginInit();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // tablaComparacion
+            // label2
             // 
-            this.tablaComparacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaComparacion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tablaComparacion.Location = new System.Drawing.Point(0, 0);
-            this.tablaComparacion.Name = "tablaComparacion";
-            this.tablaComparacion.Size = new System.Drawing.Size(356, 221);
-            this.tablaComparacion.TabIndex = 0;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(84, 183);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(631, 73);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Aqui trabaja el daniel";
             // 
-            // comparacion
+            // Predicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 221);
-            this.Controls.Add(this.tablaComparacion);
+            this.ClientSize = new System.Drawing.Size(775, 485);
+            this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "comparacion";
-            this.Text = "comparacion";
-            ((System.ComponentModel.ISupportInitialize)(this.tablaComparacion)).EndInit();
+            this.Name = "Predicion";
+            this.Text = "Predicion";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        public System.Windows.Forms.DataGridView tablaComparacion;
+        private System.Windows.Forms.Label label2;
     }
 }

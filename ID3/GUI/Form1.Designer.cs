@@ -81,7 +81,7 @@
             this.btnAyuda.Name = "btnAyuda";
             this.btnAyuda.Size = new System.Drawing.Size(132, 44);
             this.btnAyuda.TabIndex = 11;
-            this.btnAyuda.Text = "AYUDA";
+            this.btnAyuda.Text = "PREDICION";
             this.btnAyuda.UseVisualStyleBackColor = false;
             this.btnAyuda.Click += new System.EventHandler(this.btnAyuda_Click);
             // 

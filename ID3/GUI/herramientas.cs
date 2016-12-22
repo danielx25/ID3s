@@ -1,5 +1,6 @@
 ﻿using ID3.Arbol;
 using ID3.EstructuraDatos;
+using ID3.Ficheros;
 using ID3.ID3s;
 using Microsoft.VisualBasic.FileIO;
 using System;
@@ -22,7 +23,12 @@ namespace ID3.GUI
     {
         Leer l = new Leer();
         //Alamcena la ruta del archivo .txt
-        public string ARCHIVO = "";
+        public string ARCHIVO ;
+        comparacion comparacionA = new comparacion();
+        C45 c45 = null;
+        LopezMantaras diego = null;
+        ID3_ id3 = null;
+         public ArrayList ruta = new ArrayList();
 
         public herramientas()
         {
@@ -41,6 +47,9 @@ namespace ID3.GUI
                 if (!string.IsNullOrEmpty(this.openFileDialog1.FileName))
                 {
                     ARCHIVO = this.openFileDialog1.FileName;
+                    //ruta[0] = ARCHIVO;
+                    
+                    //Console.WriteLine(ARCHIVO);
                     l.lecturaArchivo(dataGridView, ';', ARCHIVO);
 
                     labelVistaPrevia.Text = "          Vista Previa";
@@ -53,38 +62,30 @@ namespace ID3.GUI
             }
         }
 
+                
         //**********************************************************************************************************************
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-
+            button3.Enabled = true;
             cargarArchivo();
-                      
+                 
             herramientas he = new herramientas();
-            C45 c45 = new C45();
-            c45.cargarTablaC45(leerCSV(ARCHIVO));
-            c45.iniciarC45();
-            c45.Arbol.analisisArbol();
+                  
 
-            LopezMantaras diego = new LopezMantaras();
-            diego.cargarTablaLM(leerCSV(ARCHIVO));
-            diego.iniciarLM();
-            diego.Arbol.analisisArbol();
+             
 
-            ID3_ id3 = new ID3_();
-            id3.cargarTabla(leerCSV(ARCHIVO));
-            id3.iniciarID3();
-            id3.Arbol.analisisArbol();
-
-            comparacion comparacionA = new comparacion();
-            
-            comparacionA.agregarArbol(new Arbol_[] {id3.Arbol, c45.Arbol, diego.Arbol});
-            comparacionA.Show();
 
 
         }
 
-        public Tabla leerCSV(string fileName)
+        public string lala(){
+        
+            string hola = ARCHIVO;
+            return hola; 
+        }
+
+        public Tabla leerCSV(string fileName) //(string fileName)
         {
             var reader = new StreamReader(File.OpenRead(fileName));
             List<List<string>> tabla = new List<List<string>>();
@@ -201,28 +202,7 @@ namespace ID3.GUI
         }
 
 
-        //***********************************************************************************************************************
-
-        public ArrayList archivoCsv(int col, string hola){ // esta wea si sirve, pero ahi nomas  ,al final no la uso
-
-           // openFileDialog1.ShowDialog();
-            ArrayList Columna = new ArrayList();
-                       
-            using (var rd = new StreamReader(hola/*openFileDialog1.FileName*/))
-            {
-                while (!rd.EndOfStream)
-                {
-                    var splits = rd.ReadLine().Split(';');
-                    Columna.Add(splits[col]);
-                    //column2.Add(splits[0]);
-                }
-            }
-
-            int i = 0;
-           
-            return Columna;
-                        
-        }
+        
 
         //***************************************************************************************************************************
 
@@ -321,7 +301,109 @@ namespace ID3.GUI
 
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Arbol_> arboles = new List<Arbol_>();
+            if (id3 != null)
+                arboles.Add(id3.Arbol);
+            if (c45 != null)
+                arboles.Add(c45.Arbol);
+            if (diego != null)
+                arboles.Add(diego.Arbol);
+
+            comparacionA = new comparacion();
+            comparacionA.agregarArbol(arboles.ToArray());
+            //comparacionA.Show();
+            agregaComparacion(comparacionA);
+        }
+
+        private void agregaComparacion(object formHijo)
+        {
+            if (this.panel2.Controls.Count > 0)
+                this.panel2.Controls.RemoveAt(0);
+            //comparacion fh = new comparacion();
+            comparacionA.TopLevel = false;
+            comparacionA.FormBorderStyle = FormBorderStyle.None;
+            comparacionA.Dock = DockStyle.Fill;
+            this.panel2.Controls.Add(comparacionA);
+            this.panel2.Tag = comparacionA;
+            comparacionA.Show();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
+            if(checkBoxId3.Checked)
+            {
+                id3 = new ID3_();
+                id3.cargarTabla(leerCSV(ARCHIVO));
+                id3.iniciarID3();
+                id3.Arbol.analisisArbol();
+            }
+
+            if(checkBoxC45.Checked)
+            {
+                c45 = new C45();
+                c45.cargarTablaC45(leerCSV(ARCHIVO));
+                c45.iniciarC45();
+                c45.Arbol.analisisArbol();
+            }
+            
+            if(checkBoxLM.Checked)
+            {
+                diego = new LopezMantaras();
+                diego.cargarTablaLM(leerCSV(ARCHIVO));
+                diego.iniciarLM();
+                diego.Arbol.analisisArbol();
+            }
+            arbolesF.Enabled = true;
+        }
+
+        private void arbolesF_Click(object sender, EventArgs e)
+        {
+            
+
+            if (id3 != null)
+            {
+                SaveFileDialog guardarDialogoArchivo = new SaveFileDialog();
+                guardarDialogoArchivo.Title = "Guardando Arbol ID3";
+                //guardarDialogoArchivo.Filter = "Archivos id3(*.id3)|*.id3";
+                if (guardarDialogoArchivo.ShowDialog() == DialogResult.OK)
+                {
+
+                    id3.Arbol.guardarArbol(guardarDialogoArchivo.FileName+".txt");
+                    Archivo.Serializar(id3.Arbol, guardarDialogoArchivo.FileName+".id3");
+                }
+            }
+
+            if (c45 != null)
+            {
+                SaveFileDialog guardarDialogoArchivo = new SaveFileDialog();
+                guardarDialogoArchivo.Title = "Guardando Arbol C45";
+                //guardarDialogoArchivo.Filter = "Archivos id3(*.id3)|*.id3";
+                if (guardarDialogoArchivo.ShowDialog() == DialogResult.OK)
+                {
+
+                    c45.Arbol.guardarArbol(guardarDialogoArchivo.FileName + ".txt");
+                    Archivo.Serializar(c45.Arbol, guardarDialogoArchivo.FileName + ".id3");
+                }
+            }
+            if (diego != null)
+            {
+                SaveFileDialog guardarDialogoArchivo = new SaveFileDialog();
+                guardarDialogoArchivo.Title = "Guardando Arbol Lopez de Mantara";
+                //guardarDialogoArchivo.Filter = "Archivos id3(*.id3)|*.id3";
+                if (guardarDialogoArchivo.ShowDialog() == DialogResult.OK)
+                {
+
+                    diego.Arbol.guardarArbol(guardarDialogoArchivo.FileName + ".txt");
+                    Archivo.Serializar(diego.Arbol, guardarDialogoArchivo.FileName + ".id3");
+                }
+            }
+
+
+        }
     }
 
 } 

@@ -68,7 +68,7 @@ namespace ID3
         private void btnUsuario_Click(object sender, EventArgs e)
         {
             label3.Text = "USUARIO";
-            Usuario u = new Usuario();
+            Usuariocs u = new Usuariocs();
             u.Show();
             //this.panel7.Controls.Clear();
         }
@@ -83,7 +83,8 @@ namespace ID3
 
         private void btnAyuda_Click(object sender, EventArgs e)
         {
-            label3.Text = "AYUDA";
+            label3.Text = "PREDICION";
+            panelPredicion(new RecorrerArbol());
             /*Ram r = new Ram();
             r.Show();*/
         }
@@ -106,9 +107,23 @@ namespace ID3
 
         private void AddFormInPanel2(object formHijo)
         {
+            /*if (this.panel7.Controls.Count > 0)
+                this.panel7.Controls.RemoveAt(0);
+            //Us fh = new Us();
+            fh.TopLevel = false;
+            fh.FormBorderStyle = FormBorderStyle.None;
+            fh.Dock = DockStyle.Fill;
+            this.panel7.Controls.Add(fh);
+            this.panel7.Tag = fh;
+            fh.Show();*/
+
+        }
+
+        private void AddFormInPanel3(object formHijo)
+        {
             if (this.panel7.Controls.Count > 0)
                 this.panel7.Controls.RemoveAt(0);
-            Usuario fh = new Usuario();
+            herramientas fh = new herramientas();
             fh.TopLevel = false;
             fh.FormBorderStyle = FormBorderStyle.None;
             fh.Dock = DockStyle.Fill;
@@ -118,11 +133,11 @@ namespace ID3
 
         }
 
-        private void AddFormInPanel3(object formHijo)
+        private void panelPredicion(object formHijo)
         {
             if (this.panel7.Controls.Count > 0)
                 this.panel7.Controls.RemoveAt(0);
-            herramientas fh = new herramientas();
+            RecorrerArbol fh = new  RecorrerArbol();
             fh.TopLevel = false;
             fh.FormBorderStyle = FormBorderStyle.None;
             fh.Dock = DockStyle.Fill;
