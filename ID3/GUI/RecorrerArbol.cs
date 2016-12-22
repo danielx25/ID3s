@@ -49,17 +49,19 @@ namespace ID3.GUI
         {
             if (nodo1.getEsHoja() == true)
             {
-                System.Console.WriteLine("ES HOJA: "+ nodo.getNombreClase());
+                System.Console.WriteLine("ES HOJA: "+ nodo1.getNombreClase());
                 clase = new Label();
-                //clase.Size = new System.Drawing.Size(10, 10);
+                clase.Size = new System.Drawing.Size(200, 15);
                 clase.Text = "prediccion: "+nodo1.getNombreClase();
+                //clase.Text = "prediccion: " +"daniel";
                 this.flowLayoutPanel1.Controls.Add(clase);
-                //atributos = null;
+                //this.atributos = null;
 
             }
             else
             {
                 clase = new Label();
+                this.clase.Size = new System.Drawing.Size(100, 13);
                 clase.Text = nodo1.getNombreClase();
                 this.flowLayoutPanel1.Controls.Add(clase);
                 atributos = new ComboBox();
@@ -91,7 +93,7 @@ namespace ID3.GUI
             recorrer(nodo[index]);
             if (!nodo[index].getEsHoja())
             {
-                nodo = nodo[index];
+            nodo = nodo[index];
             }
             
         }
@@ -100,6 +102,7 @@ namespace ID3.GUI
         {
             flowLayoutPanel1.Controls.Clear();
             this.clase = new System.Windows.Forms.Label();
+            this.clase.Size = new System.Drawing.Size(200, 50);
             this.atributos = new System.Windows.Forms.ComboBox();
             this.atributos.SelectedIndexChanged += new System.EventHandler(this.atributos_SelectedIndexChanged_1);
             this.flowLayoutPanel1.Controls.Add(this.clase);
@@ -125,6 +128,7 @@ namespace ID3.GUI
         {
             flowLayoutPanel1.Controls.Clear();
             this.clase = new System.Windows.Forms.Label();
+            clase.Size = new System.Drawing.Size(200, 50);
             this.atributos = new System.Windows.Forms.ComboBox();
             this.atributos.SelectedIndexChanged += new System.EventHandler(this.atributos_SelectedIndexChanged_1);
             this.flowLayoutPanel1.Controls.Add(this.clase);

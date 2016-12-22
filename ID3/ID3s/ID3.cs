@@ -36,7 +36,7 @@ namespace ID3.ID3s
 
             arbol.setRaiz(algoritmoID3(tabla, tabla.getClases()));
             System.Console.WriteLine(arbol);
-            arbol.guardarArbol("arbol.txt");
+            arbol.guardarArbol("arbolID3.txt");
             //Nodo s=algoritmoID3(this.tabla, tabla.getClases());
             //System.Console.WriteLine(s.getNombreClase());
 
