@@ -45,7 +45,7 @@ namespace ID3.Arbol
             punteros = new List<Nodo>();
         }
 
-        public object this[int indice]
+        public Nodo this[int indice]
         {
             get
             {

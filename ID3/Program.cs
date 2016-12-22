@@ -107,11 +107,11 @@ namespace ID3
 
 
             //Tabla tabla = farmaco();
-            /*
+            
             ID3_ id3 = new ID3_();
             id3.cargarTabla(farmaco());
             id3.iniciarID3();
-            */
+            
             //System.Console.WriteLine(tabla);
 
 
@@ -126,7 +126,7 @@ namespace ID3
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new RecorrerArbol(id3.Arbol));
 
         }
 
