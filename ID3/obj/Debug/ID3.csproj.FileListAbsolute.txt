@@ -31,3 +31,4 @@ C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.Properties.Resources.resources
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.Usuario.resources
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.csproj.GenerateResource.Cache
 C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.GUI.comparacion.resources
+C:\Users\danielx\Desktop\ID3s\ID3\obj\Debug\ID3.GUI.RecorrerArbol.resources
