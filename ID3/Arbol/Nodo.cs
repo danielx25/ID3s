@@ -12,7 +12,8 @@ namespace ID3.Arbol
         private bool esHoja = false;
         private bool esContinuo = false;
         private String clase;
-        private List<String> atributos;
+        private List<String> atributosDiscretos;
+        private List<double> atributosContinuos;
         private double division;
         private List<Nodo> punteros = new List<Nodo>();
 
@@ -20,10 +21,10 @@ namespace ID3.Arbol
         private double ganancia = 0.0;
         private double distancia = 0.0;
 
-        public Nodo(String clase, List<String> atributos)
+        public Nodo(String clase, List<String> atributosDiscretos)
         {
             this.clase = clase;
-            this.atributos = atributos;
+            this.atributosDiscretos = atributosDiscretos;
             esContinuo = false;
             punteros = new List<Nodo>();
         }
@@ -33,16 +34,16 @@ namespace ID3.Arbol
             clase = atributo_salida;
             esHoja = true;
             esContinuo = false;
-            atributos = null;
+            atributosDiscretos = null;
             punteros = null;
         }
 
-        public Nodo(String clase, double division)
+        public Nodo(String clase, List<double> atributos)
         {
             this.clase = clase;
-            this.division = division;
             esContinuo = true;
             punteros = new List<Nodo>();
+            this.atributosContinuos = atributos;
         }
 
         public Nodo this[int indice]
@@ -54,6 +55,14 @@ namespace ID3.Arbol
 
             set
             {
+            }
+        }
+
+        public bool IsContinuo
+        {
+            get
+            {
+                return esContinuo;
             }
         }
 
@@ -69,7 +78,7 @@ namespace ID3.Arbol
 
         public Nodo getNodo(string atributo)
         {
-            int i = atributos.IndexOf(atributo);
+            int i = atributosDiscretos.IndexOf(atributo);
             return punteros[i];
         }
 
@@ -88,9 +97,14 @@ namespace ID3.Arbol
             return punteros.Count();
         }
 
-        public List<String> getAtributos()
+        public List<String> getatributosDiscretos()
         {
-            return atributos;
+            return atributosDiscretos;
+        }
+
+        public List<double> getatributosContinuos()
+        {
+            return atributosContinuos;
         }
 
         public void setGanancia(double ganancia)

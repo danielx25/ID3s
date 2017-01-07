@@ -9,7 +9,8 @@ namespace ID3.EstructuraDatos
 {
     public class Columna
     {
-        private List<string> atributos = null;
+        private List<string> atributosDiscretos = null;
+        private List<double> atributosContinuos = null;
         private bool isContinuo = false;
         private ArrayList lista;
 
@@ -18,6 +19,7 @@ namespace ID3.EstructuraDatos
         public Columna(String clase, int numFilas, bool isContinuo)
         {
             this.clase = clase;
+            this.isContinuo = isContinuo;
             lista = new ArrayList();
             for (int i=0; i<numFilas; i++)
             {
@@ -25,6 +27,14 @@ namespace ID3.EstructuraDatos
                     lista.Add(0);
                 else
                     lista.Add("none");
+            }
+        }
+
+        public bool IsContinuo
+        {
+            get
+            {
+                return isContinuo;
             }
         }
 
@@ -41,14 +51,25 @@ namespace ID3.EstructuraDatos
             }
         }
 
-        public List<String> getAtributos()
+        public List<String> getAtributosDiscretos()
         {
-            return atributos;
+            return atributosDiscretos;
+        }
+
+
+        public List<double> getAtributosContinuos()
+        {
+            return atributosContinuos;
         }
 
         public void addAtributo(List<String> attrs)
         {
-            this.atributos = attrs;
+            this.atributosDiscretos = attrs;
+        }
+
+        public void addAtributo(List<double> attrs)
+        {
+            this.atributosContinuos = attrs;
         }
 
         public String getClase()
@@ -74,6 +95,25 @@ namespace ID3.EstructuraDatos
             return contador;
         }
 
+        public int getFrecuenciaAtributo(int indexAtributo)
+        {
+            double limitInferior = -1 * Double.PositiveInfinity;
+            double limitSuperior = Double.PositiveInfinity;
+            if (indexAtributo > 0)
+                limitInferior = atributosContinuos[indexAtributo - 1];
+            if (indexAtributo < atributosContinuos.Count)
+                limitSuperior = atributosContinuos[indexAtributo];
+            double atributoC;
+            int contador = 0;
+            for (int i = 0; i < lista.Count; i++)
+            {
+                atributoC = System.Convert.ToDouble(lista[i]);
+                if (atributoC >= limitInferior && atributoC < limitSuperior)
+                    contador += 1;
+            }
+            return contador;
+        }
+
         public void eliminarFila(int indice)
         {
             lista.RemoveAt(indice);
@@ -82,20 +122,40 @@ namespace ID3.EstructuraDatos
         protected void setValores(ArrayList array, List<string> atrr)
         {
             lista = new ArrayList(array);
-            atributos = new List<string>(atrr);
+            atributosDiscretos = new List<string>(atrr);
         }
 
+        protected void setValores(ArrayList array, List<double> atrr)
+        {
+            lista = new ArrayList(array);
+            atributosContinuos = new List<double>(atrr);
+        }
+
+        public void analizarDatos()
+        {
+            if (isContinuo == false)
+                atributosDiscretos = lista.Cast<String>().Distinct().ToList();
+            //else
+            //    atributosContinuos = lista.Cast<double>().Distinct().ToList();
+
+        }
 
         public Columna Clone()
         {
             Columna columna = new Columna(this.clase, lista.Count, this.isContinuo);
-            columna.setValores(lista, atributos);
+            if(isContinuo)
+                columna.setValores(lista, atributosContinuos);
+            else
+                columna.setValores(lista, atributosDiscretos);
             return columna;
         }
 
         public int getCountAtributos()
         {
-            return atributos.Count;
+            if (isContinuo)
+                return atributosContinuos.Count;
+            else
+                return atributosDiscretos.Count;
         }
 
     }

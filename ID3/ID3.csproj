@@ -64,6 +64,7 @@
     <Compile Include="Arbol\Arbol_.cs" />
     <Compile Include="Arbol\Nodo.cs" />
     <Compile Include="Comparacion\Comparacion.cs" />
+    <Compile Include="Ejemplos.cs" />
     <Compile Include="EstructuraDatos\Columna.cs" />
     <Compile Include="EstructuraDatos\Tabla.cs" />
     <Compile Include="Ficheros\Archivo.cs" />

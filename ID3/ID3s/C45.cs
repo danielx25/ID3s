@@ -65,7 +65,7 @@ namespace ID3.ID3s
             }
             int indiceClase = this.seleccionarAtributoMayorRatio(tabla);
             Columna clase = tabla.getColumna(indiceClase);
-            List<String> atributosClase = clase.getAtributos();
+            List<String> atributosClase = clase.getAtributosDiscretos();
             raiz = new Nodo(clase.getClase(), atributosClase); // el nodo viene a ser la "clase" y los atributos las ramas
 
             Tabla nuevaTabla = null;
@@ -89,7 +89,7 @@ namespace ID3.ID3s
 
         public double informacionDivision(Columna columna) // split information
         {
-            List<string> atributos = columna.getAtributos();
+            List<string> atributos = columna.getAtributosDiscretos();
             double divDeLaInformacion = 0.0;
             double probb = 0.0;
 

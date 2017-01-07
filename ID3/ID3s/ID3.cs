@@ -30,6 +30,7 @@ namespace ID3.ID3s
 
         public void iniciarID3()
         {
+            tabla.ToString();
             //inicio cronometro
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Restart();
@@ -54,6 +55,9 @@ namespace ID3.ID3s
         
         public Nodo algoritmoID3(Tabla tabla, List<String> atributos)
         {
+            System.Console.WriteLine();
+            tabla.ToString();
+            System.Console.WriteLine();
             Nodo raiz = null;
             if(siTodosEjemplosSonLosMismos(tabla))
             {
@@ -71,16 +75,39 @@ namespace ID3.ID3s
             }
             int indiceClase = seleccionarAtributoConMayorGanancia(tabla, atributos, raiz);
             Columna clase = tabla.getColumna(indiceClase);
-            List<String> atributosClase = clase.getAtributos();
-            raiz = new Nodo(clase.getClase(), atributosClase); // el nodo viene a ser la "clase" y los atributos las ramas
+            System.Console.WriteLine("Clase: " +clase.getClase());
+            int countAtributos = 0;
+            
+            if (clase.IsContinuo)
+            {
+                List<double> atributosClase1 = clase.getAtributosContinuos();
+                raiz = new Nodo(clase.getClase(), atributosClase1); // el nodo viene a ser la "clase" y los atributos las ramas
+                countAtributos = atributosClase1.Count+1;
+                
+            }
+            else
+            {
+                List<String> atributosClase2 = clase.getAtributosDiscretos();
+                raiz = new Nodo(clase.getClase(), atributosClase2);
+                countAtributos = atributosClase2.Count;
+            }
+            
 
             Tabla nuevaTabla = null;
 
-            for (int i=0; i<atributosClase.Count; i++)
+            for (int i=0; i<countAtributos; i++)
             {
+                //System.Console.WriteLine(clase.getAtributosDiscretos()[i]);
                 nuevaTabla = (Tabla)tabla.Clone();
-                particionarTabla(nuevaTabla, indiceClase, atributosClase[i]);
-                if(nuevaTabla.getCountfilas() ==0)//ejemplos estan vacios
+                if (clase.IsContinuo)
+                {
+                    particionarTabla(nuevaTabla, indiceClase, i);
+                    
+                }
+                else
+                    particionarTabla(nuevaTabla, indiceClase, clase.getAtributosDiscretos()[i]);
+                nuevaTabla.ToString();
+                if (nuevaTabla.getCountfilas() ==0)//ejemplos estan vacios
                 {
                     raiz.agregarNodo(new Nodo(elAtributoSAlidoMayorNumero(tabla)));
                 }
@@ -111,7 +138,7 @@ namespace ID3.ID3s
         public string elAtributoSAlidoMayorNumero(Tabla tabla)
         {
             Columna columna = tabla.getColumnaAtributoSalida();
-            List<String> atributos = columna.getAtributos();
+            List<String> atributos = columna.getAtributosDiscretos();
             int[] contadorAtributos = new int[atributos.Count];
             //atributo = (String)columna[0];
 
@@ -149,17 +176,31 @@ namespace ID3.ID3s
         public double gananciaClase(Columna clase, Columna atributoObjetivo)
         {
             double resultado = 0.0;
-            List<String> atributos = clase.getAtributos();
-            double[] entropiaAtributos = new double[atributos.Count];
+            //List<String> atributos = clase.getAtributosDiscretos();
+            double[] entropiaAtributos =null;
             double entropiaGeneral = this.entropiaGeneral(atributoObjetivo);
 
-            for(int i=0; i<atributos.Count; i++)
+            if(clase.IsContinuo)
             {
-                entropiaAtributos[i] = entropiaAtributo(clase, atributoObjetivo, atributos[i]);
-                resultado += -((double)clase.getFrecuenciaAtributo(atributos[i]) /clase.getTam())*entropiaAtributos[i];
-                //System.Console.WriteLine(clase.getClase()+"|| "+atributos[i] + "===>"+((double)clase.getFrecuenciaAtributo(atributos[i]) / clase.getTam()) * entropiaAtributos[i]);
-                //System.Console.WriteLine("ganancia: "+entropiaGeneral+" ---> "+resultado);
+                entropiaAtributos = new double[clase.getCountAtributos()+1];
+                for (int i = 0; i < clase.getCountAtributos() + 1; i++)
+                {
+                    entropiaAtributos[i] = entropiaAtributo(clase, atributoObjetivo, i);
+                    resultado += -((double)clase.getFrecuenciaAtributo(i) / clase.getTam()) * entropiaAtributos[i];
+                }
             }
+            else
+            {
+                entropiaAtributos = new double[clase.getCountAtributos()];
+                for (int i = 0; i < clase.getCountAtributos(); i++)
+                {
+                    entropiaAtributos[i] = entropiaAtributo(clase, atributoObjetivo, i);
+                    resultado += -((double)clase.getFrecuenciaAtributo(clase.getAtributosDiscretos()[i]) /
+                        clase.getTam()) * entropiaAtributos[i];
+                }
+            }
+                
+
             //System.Console.WriteLine();
             resultado += entropiaGeneral;
             return resultado;
@@ -167,7 +208,7 @@ namespace ID3.ID3s
 
         public double entropiaGeneral(Columna atributoObjetivo)
         {
-            List<String> atributos = atributoObjetivo.getAtributos();
+            List<String> atributos = atributoObjetivo.getAtributosDiscretos();
             int[] contadorAtributos = new int[atributos.Count];
 
             for (int i = 0; i < atributoObjetivo.getTam(); i++)
@@ -193,11 +234,38 @@ namespace ID3.ID3s
             return resultado;
         }
 
-        public double entropiaAtributo(Columna clase, Columna atributoObjetivo, String atributo)
+        public double entropiaAtributo(Columna clase, Columna atributoObjetivo, int indiceAtributo)
         {
-            List<String> atributos = atributoObjetivo.getAtributos();
-            int[] contadorAtributos = new int[atributos.Count];
-            int total = 0;
+            //Double.PositiveInfinity;
+            List<String> atributos = atributoObjetivo.getAtributosDiscretos();
+            int[] contadorAtributos = null;
+
+            if(clase.IsContinuo)
+            {
+                contadorAtributos = contadorAtributosContinuos(clase, atributoObjetivo, indiceAtributo);
+            }
+            else
+            {
+                contadorAtributos = contadorAtributosDiscretos(clase, atributoObjetivo, indiceAtributo);
+            }
+            
+
+            double resultado = 0.0;
+            int total = contadorAtributos.Sum();
+            for (int i = 0; i < contadorAtributos.Length; i++)
+            {
+
+                double division = (contadorAtributos[i] / (double)total);
+                if(division>0)
+                resultado+=(-division) * (Math.Log(division)/Math.Log(2.0));
+            }
+            return resultado;
+        }
+
+        public int [] contadorAtributosDiscretos(Columna clase, Columna atributoObjetivo, int indiceAtributo)
+        {
+            List<String> atributos = atributoObjetivo.getAtributosDiscretos();
+            int[] contador_atributos = new int[atributos.Count];
 
             for (int i = 0; i < atributoObjetivo.getTam(); i++)
             {
@@ -206,28 +274,54 @@ namespace ID3.ID3s
 
                 for (int j = 0; j < atributos.Count; j++)
                 {
-                    if (String.Equals(atributoS, atributos[j], StringComparison.Ordinal) && String.Equals(atributoC, atributo, StringComparison.Ordinal))
+                    if (String.Equals(atributoS, atributos[j], StringComparison.Ordinal) && String.Equals(atributoC,
+                        clase.getAtributosDiscretos()[indiceAtributo], StringComparison.Ordinal))
                     {
-                        contadorAtributos[j] += 1;
-                        total += 1;
+                        contador_atributos[j] += 1;
+                        break;
                     }
-                        
+
                 }
             }
-
-            double resultado = 0.0;
-
-            for (int i = 0; i < contadorAtributos.Length; i++)
-            {
-
-                double division = (contadorAtributos[i] / (double)total);
-                if(division>0)
-                resultado+=(-division) * (Math.Log(division)/Math.Log(2.0));
-                //System.Console.WriteLine("resultado: "+ resultado);
-                //System.Console.WriteLine("              ====> " + division+ " ["+ contadorAtributos[i] + "]/"+ " [" + total+ "]");
-            }
-            return resultado;
+            return contador_atributos;
         }
+
+        public int[] contadorAtributosContinuos(Columna clase, Columna atributoObjetivo, int indiceAtributo)
+        {
+            List<String> atributos = atributoObjetivo.getAtributosDiscretos();
+            int[] contador_atributos = new int[atributos.Count];
+
+            double limitInferior = -1*Double.PositiveInfinity;
+            double limitSuperior = Double.PositiveInfinity;
+            if (indiceAtributo > 0)
+                limitInferior = clase.getAtributosContinuos()[indiceAtributo - 1];
+            if (indiceAtributo < clase.getAtributosContinuos().Count)
+                limitSuperior = clase.getAtributosContinuos()[indiceAtributo];
+
+            for (int i = 0; i < atributoObjetivo.getTam(); i++)
+            {
+                String atributoS = (String)atributoObjetivo[i];
+                double atributoC = System.Convert.ToDouble(clase[i]);
+
+                for (int j = 0; j < atributos.Count; j++)
+                {
+                    if((atributoC >= limitInferior && atributoC < limitSuperior)&&
+                        String.Equals(atributoS, atributos[j], StringComparison.Ordinal))
+                    {
+                        contador_atributos[j] += 1;
+                        break;
+                    }
+
+                }
+            }
+            foreach(int i in contador_atributos)
+            {
+                System.Console.WriteLine("contador = " + i);
+            }
+            System.Console.WriteLine();
+            return contador_atributos;
+        }
+
 
         public void particionarTabla(Tabla tabla, int indiceClase, String atributo)
         {
@@ -241,6 +335,33 @@ namespace ID3.ID3s
                     tabla.eliminarFilas(i);
                     i -= 1;
                 }
+            }
+        }
+
+        public void particionarTabla(Tabla tabla, int indiceClase, int indexAtributo)
+        {
+            System.Console.WriteLine("indice: " + indexAtributo);
+            Columna clase = tabla.getColumna(indiceClase);
+            double limitInferior = -1 * Double.PositiveInfinity;
+            double limitSuperior = Double.PositiveInfinity;
+            if (indexAtributo > 0)
+                limitInferior = clase.getAtributosContinuos()[indexAtributo - 1];
+            if (indexAtributo < clase.getAtributosContinuos().Count)
+                limitSuperior = clase.getAtributosContinuos()[indexAtributo];
+            double atributoC;
+            System.Console.WriteLine("inferior: "+limitInferior);
+            System.Console.WriteLine("superior: " + limitSuperior);
+            for (int i = 0; i < clase.getTam(); i++)
+            {
+                atributoC = System.Convert.ToDouble(clase[i]);
+                System.Console.WriteLine("aceptable: " + atributoC);
+                if (atributoC >= limitInferior && atributoC < limitSuperior)
+                {
+                    
+                    tabla.eliminarFilas(i);
+                    i -= 1;
+                }
+                    
             }
         }
 

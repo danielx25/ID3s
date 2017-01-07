@@ -61,11 +61,11 @@ namespace ID3.ID3s
             Columna columnaA = tablaA.getColumnaAtributoSalida();
             Columna columnaB = tablaB.getColumnaAtributoSalida();
 
-            int[] contadorAtributosA = new int[columnaA.getAtributos().Count];
-            int[] contadorAtributosB = new int[columnaB.getAtributos().Count];
+            int[] contadorAtributosA = new int[columnaA.getAtributosDiscretos().Count];
+            int[] contadorAtributosB = new int[columnaB.getAtributosDiscretos().Count];
 
-            List<string> atributosA = columnaA.getAtributos();
-            List<string> atributosB = columnaB.getAtributos();
+            List<string> atributosA = columnaA.getAtributosDiscretos();
+            List<string> atributosB = columnaB.getAtributosDiscretos();
 
             for (int i=0; i<columnaA.getCountAtributos(); i++)
             {
@@ -112,7 +112,7 @@ namespace ID3.ID3s
             for (int i=0; i<tabla.getCountColumna()-1; i++)
             {
                 columna = tabla.getColumna(i);
-                atributos = columna.getAtributos();
+                atributos = columna.getAtributosDiscretos();
                 distancia = 0;
                 for (int j=0; j<atributos.Count; j++)
                 {
@@ -150,7 +150,7 @@ namespace ID3.ID3s
             }
             int indiceClase = seleccionarMinDistancia(calcularDistanciaConTodaParticiones(tabla));
             Columna clase = tabla.getColumna(indiceClase);
-            List<String> atributosClase = clase.getAtributos();
+            List<String> atributosClase = clase.getAtributosDiscretos();
             raiz = new Nodo(clase.getClase(), atributosClase); // el nodo viene a ser la "clase" y los atributos las ramas
 
             Tabla nuevaTabla = null;

@@ -56,14 +56,43 @@ namespace ID3.Arbol
             //System.Console.WriteLine(spacio+"nombre: " + nodo.getNombreClase());
             lista.Add(spacio + "nombre: " + nodo.getNombreClase()+"\n");
             if (nodo.getEsHoja() == false)
-            for(int i=0; i<nodo.getCountPuntero(); i++)
             {
-                List<String> atributos = nodo.getAtributos();
-                Nodo nuevoNodo = (Nodo)nodo[i];
-                //System.Console.WriteLine(spacio + "  atrr:"+atributos[i]);
-                lista.Add(spacio + "  atrr:" + atributos[i]+"\n");
-                mostrarArbol(nuevoNodo, spacio+"     ", lista);
+                if(nodo.IsContinuo)
+                {
+                    List<double> atributos = nodo.getatributosContinuos();
+                    for (int i = 0; i < nodo.getCountPuntero(); i++)
+                    {
+                        double limitInferior = -1 * Double.PositiveInfinity;
+                        double limitSuperior = Double.PositiveInfinity;
+                        if (i > 0)
+                            limitInferior = atributos[i - 1];
+                        if (i < atributos.Count)
+                            limitSuperior = atributos[i];
+
+
+                        Nodo nuevoNodo = (Nodo)nodo[i];
+                        //System.Console.WriteLine(spacio + "  atrr:"+atributos[i]);
+                        lista.Add(spacio + "  atrr:" + limitInferior+"< x <"+limitSuperior + "\n");
+                        mostrarArbol(nuevoNodo, spacio + "     ", lista);
+                       
+                    }
+                }
+                else
+                {
+
+                    List<String> atributos = nodo.getatributosDiscretos();
+                    for (int i = 0; i < nodo.getCountPuntero(); i++)
+                    {
+                        Nodo nuevoNodo = (Nodo)nodo[i];
+                        //System.Console.WriteLine(spacio + "  atrr:"+atributos[i]);
+                        lista.Add(spacio + "  atrr:" + atributos[i] + "\n");
+                        mostrarArbol(nuevoNodo, spacio + "     ", lista);
+
+                    }
+
+                }
             }
+            
 
         }
         public void analisisArbol()
@@ -107,7 +136,7 @@ namespace ID3.Arbol
             if (nodo.getEsHoja() == false)
                 for (int i = 0; i < nodo.getCountPuntero(); i++)
                 {
-                    List<String> atributos = nodo.getAtributos();
+                    List<String> atributos = nodo.getatributosDiscretos();
                     Nodo nuevoNodo = (Nodo)nodo[i];
                     if (nuevoNodo.getEsHoja())
                     lista.Add( "  atrr:" + atributos[i] + "\n");

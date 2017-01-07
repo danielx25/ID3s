@@ -26,7 +26,7 @@ namespace ID3.GUI
         public void cargar_Raiz(Arbol_ arbol)
         {
             clase.Text = arbol.Raiz.getNombreClase();
-            List<string> strrs = arbol.Raiz.getAtributos();
+            List<string> strrs = arbol.Raiz.getatributosDiscretos();
             foreach (string valor in strrs)
             {
                 atributos.Items.Add(valor);
@@ -66,7 +66,7 @@ namespace ID3.GUI
                 this.flowLayoutPanel1.Controls.Add(clase);
                 atributos = new ComboBox();
                 atributos.Size = new System.Drawing.Size(521, 21);
-                List<string> strrs = nodo1.getAtributos();
+                List<string> strrs = nodo1.getatributosDiscretos();
                 foreach (string valor in strrs)
                 {
                     atributos.Items.Add(valor);
