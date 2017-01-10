@@ -65,15 +65,36 @@ namespace ID3.ID3s
             }
             int indiceClase = this.seleccionarAtributoMayorRatio(tabla);
             Columna clase = tabla.getColumna(indiceClase);
-            List<String> atributosClase = clase.getAtributosDiscretos();
-            raiz = new Nodo(clase.getClase(), atributosClase); // el nodo viene a ser la "clase" y los atributos las ramas
+
+            int countAtributos = 0;
+
+            if (clase.IsContinuo)
+            {
+                List<double> atributosClase1 = clase.getAtributosContinuos();
+                raiz = new Nodo(clase.getClase(), atributosClase1); // el nodo viene a ser la "clase" y los atributos las ramas
+                countAtributos = atributosClase1.Count + 1;
+
+            }
+            else
+            {
+                List<String> atributosClase2 = clase.getAtributosDiscretos();
+                raiz = new Nodo(clase.getClase(), atributosClase2);
+                countAtributos = atributosClase2.Count;
+            }
 
             Tabla nuevaTabla = null;
 
-            for (int i = 0; i < atributosClase.Count; i++)
+            for (int i = 0; i < countAtributos; i++)
             {
                 nuevaTabla = (Tabla)tabla.Clone();
-                particionarTabla(nuevaTabla, indiceClase, atributosClase[i]);
+                if (clase.IsContinuo)
+                {
+                    particionarTabla(nuevaTabla, indiceClase, i);
+
+                }
+                else
+                    particionarTabla(nuevaTabla, indiceClase, clase.getAtributosDiscretos()[i]);
+
                 if (nuevaTabla.getCountfilas() == 0)//ejemplos estan vacios
                 {
                     raiz.agregarNodo(new Nodo(elAtributoSAlidoMayorNumero(tabla)));
@@ -89,18 +110,27 @@ namespace ID3.ID3s
 
         public double informacionDivision(Columna columna) // split information
         {
-            List<string> atributos = columna.getAtributosDiscretos();
             double divDeLaInformacion = 0.0;
             double probb = 0.0;
+            int contadorAtributos1 = 0;
+  
+            if (columna.IsContinuo)
+                contadorAtributos1 = columna.getAtributosContinuos().Count + 1;
+            else
+                contadorAtributos1 = columna.getAtributosDiscretos().Count;
+
 
             //Console.WriteLine("clase: "+columna.getClase());
-            for ( int i = 0; i < atributos.Count; i++ ) {
+            for ( int i = 0; i < contadorAtributos1; i++ ) {
                 //Console.WriteLine("infoDiv = ("+atributos[i]+")"+ columna.getFrecuenciaAtributo(atributos[i])+" / "+columna.getTam());
-                probb = (double)((double)(columna.getFrecuenciaAtributo(atributos[i])) / (double)(columna.getTam()));
+                if(columna.IsContinuo)
+                    probb = (double)((double)(columna.getFrecuenciaAtributo(i)) / (double)(columna.getTam()));
+                else
+                    probb = (double)((double)(columna.getFrecuenciaAtributo(columna.getAtributosDiscretos()[i])) 
+                        / (double)(columna.getTam()));
                 //Console.WriteLine("probb = "+probb);
                 divDeLaInformacion -= (double)(probb*(Math.Log(probb,2.0)));
             }
-            //Console.WriteLine("Div de la info = "+divDeLaInformacion);
             return divDeLaInformacion;
         }
 

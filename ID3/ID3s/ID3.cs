@@ -123,16 +123,35 @@ namespace ID3.ID3s
         public bool siTodosEjemplosSonLosMismos(Tabla tabla)
         {
             Columna columna = tabla.getColumnaAtributoSalida();
-            String atributo;
-            atributo = (String)columna[0];
-            for (int i=1; i<columna.getTam(); i++)
+            int frecuencia = 0;
+            if(columna.IsContinuo)
             {
-                if (String.Equals(atributo, (String)columna[i], StringComparison.Ordinal)==false)
+                for(int i=0; i<columna.getAtributosContinuos().Count+1;i++)
                 {
-                    return false;
+                    frecuencia = columna.getFrecuenciaAtributo(i);
+                    if (frecuencia == columna.getTam())
+                        return true;
+
+                    if (frecuencia > 0)
+                        return false;
                 }
+                
             }
-            return true;
+            else
+            {
+                String atributo;
+                atributo = (String)columna[0];
+                for (int i = 1; i < columna.getTam(); i++)
+                {
+                    if (String.Equals(atributo, (String)columna[i], StringComparison.Ordinal) == false)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            return false;
         }
 
         public string elAtributoSAlidoMayorNumero(Tabla tabla)
@@ -143,14 +162,25 @@ namespace ID3.ID3s
             //atributo = (String)columna[0];
 
 
-
-            for (int i = 0; i < columna.getTam(); i++)
+            int frecuencia = 0;
+            if (columna.IsContinuo)
             {
-                String atributoC = (String)columna[i]; 
-                for (int j=0; j<atributos.Count; j++)
+                for (int i = 0; i < columna.getAtributosContinuos().Count + 1; i++)
                 {
-                    if (String.Equals(atributoC, atributos[j], StringComparison.Ordinal))
-                        contadorAtributos[j] += 1; 
+                    contadorAtributos[i]= columna.getFrecuenciaAtributo(i);
+                }
+
+            }
+            else
+            {
+                for (int i = 0; i < columna.getTam(); i++)
+                {
+                    String atributoC = (String)columna[i];
+                    for (int j = 0; j < atributos.Count; j++)
+                    {
+                        if (String.Equals(atributoC, atributos[j], StringComparison.Ordinal))
+                            contadorAtributos[j] += 1;
+                    }
                 }
             }
 
@@ -208,19 +238,25 @@ namespace ID3.ID3s
 
         public double entropiaGeneral(Columna atributoObjetivo)
         {
-            List<String> atributos = atributoObjetivo.getAtributosDiscretos();
-            int[] contadorAtributos = new int[atributos.Count];
+            int[] contadorAtributos = null;
 
-            for (int i = 0; i < atributoObjetivo.getTam(); i++)
+            if (atributoObjetivo.IsContinuo)
             {
-                String atributoC = (String)atributoObjetivo[i];
-
-                for (int j = 0; j < atributos.Count; j++)
+                contadorAtributos = new int[atributoObjetivo.getAtributosContinuos().Count + 1];
+                for (int i = 0; i < atributoObjetivo.getAtributosContinuos().Count + 1; i++)
                 {
-                    if (String.Equals(atributoC, atributos[j], StringComparison.Ordinal))
-                        contadorAtributos[j] += 1;
+                    contadorAtributos[i] = atributoObjetivo.getFrecuenciaAtributo(i);
+                }
+
+            }
+            else {
+                contadorAtributos = new int[atributoObjetivo.getAtributosDiscretos().Count];
+                for (int i = 0; i < atributoObjetivo.getAtributosContinuos().Count + 1; i++)
+                {
+                    contadorAtributos[i] = atributoObjetivo.getFrecuenciaAtributo(atributoObjetivo.getAtributosDiscretos()[i]);
                 }
             }
+                
 
             double resultado = 0.0;
 
@@ -264,25 +300,61 @@ namespace ID3.ID3s
 
         public int [] contadorAtributosDiscretos(Columna clase, Columna atributoObjetivo, int indiceAtributo)
         {
-            List<String> atributos = atributoObjetivo.getAtributosDiscretos();
-            int[] contador_atributos = new int[atributos.Count];
+            int[] contador_atributos = null;
 
-            for (int i = 0; i < atributoObjetivo.getTam(); i++)
+            if (atributoObjetivo.IsContinuo)
             {
-                String atributoS = (String)atributoObjetivo[i];
-                String atributoC = (String)clase[i];
+                
 
-                for (int j = 0; j < atributos.Count; j++)
+                List<String> atributos = atributoObjetivo.getAtributosDiscretos();
+                contador_atributos = new int[atributoObjetivo.getAtributosContinuos().Count+1];
+                for (int i = 0; i < atributoObjetivo.getTam(); i++)
                 {
-                    if (String.Equals(atributoS, atributos[j], StringComparison.Ordinal) && String.Equals(atributoC,
-                        clase.getAtributosDiscretos()[indiceAtributo], StringComparison.Ordinal))
-                    {
-                        contador_atributos[j] += 1;
-                        break;
-                    }
+                    double atributoS = System.Convert.ToDouble(atributoObjetivo[i]); 
+                     String atributoC = (String)clase[i];
 
+                    for (int j = 0; j < atributoObjetivo.getAtributosContinuos().Count + 1; j++)
+                    {
+                        double limitInferior = -1 * Double.PositiveInfinity;
+                        double limitSuperior = Double.PositiveInfinity;
+                        if (j > 0)
+                            limitInferior = atributoObjetivo.getAtributosContinuos()[j - 1];
+                        if (j < atributoObjetivo.getAtributosContinuos().Count)
+                            limitSuperior = atributoObjetivo.getAtributosContinuos()[j];
+
+                        if ((atributoS >= limitInferior && atributoS < limitSuperior) && String.Equals(atributoC,
+                            clase.getAtributosDiscretos()[j], StringComparison.Ordinal))
+                        {
+                            contador_atributos[j] += 1;
+                            break;
+                        }
+
+                    }
                 }
             }
+            else
+            {
+                List<String> atributos = atributoObjetivo.getAtributosDiscretos();
+                 contador_atributos = new int[atributos.Count];
+                for (int i = 0; i < atributoObjetivo.getTam(); i++)
+                {
+                    String atributoS = (String)atributoObjetivo[i];
+                    String atributoC = (String)clase[i];
+
+                    for (int j = 0; j < atributos.Count; j++)
+                    {
+                        if (String.Equals(atributoS, atributos[j], StringComparison.Ordinal) && String.Equals(atributoC,
+                            clase.getAtributosDiscretos()[indiceAtributo], StringComparison.Ordinal))
+                        {
+                            contador_atributos[j] += 1;
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            
             return contador_atributos;
         }
 

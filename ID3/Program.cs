@@ -69,10 +69,10 @@ namespace ID3
         {
 
             //herramientas he = new herramientas();
-            //C45 c45 = new C45();
+            C45 c45 = new C45();
             //he.churn();
-            //c45.cargarTablaC45(he.churn());
-            //c45.iniciarC45();
+            c45.cargarTablaC45(Ejemplos.playballContinuo());
+            c45.iniciarC45();
 
             /*
             C45 c45 = new C45();
@@ -107,11 +107,11 @@ namespace ID3
 
 
             //Tabla tabla = farmaco();
-            /*
+            
             ID3_ id3 = new ID3_();
             id3.cargarTabla(Ejemplos.playballContinuo());
-            id3.iniciarID3();
-            */
+            //id3.iniciarID3();
+            
             //System.Console.WriteLine(tabla);
 
 

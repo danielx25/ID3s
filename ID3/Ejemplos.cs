@@ -687,9 +687,9 @@ namespace ID3
             Tabla tabla = new Tabla();
             tabla.agregarColumna(outlook);
             tabla.agregarColumna(temperature);
-            tabla.agregarColumna(humidity);
             tabla.agregarColumna(wind);
             tabla.agregarColumna(playBall);
+            tabla.agregarColumna(humidity);
             return tabla;
         }
     }
